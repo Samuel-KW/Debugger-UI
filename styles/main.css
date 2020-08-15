@@ -84,8 +84,6 @@ body {
 }
 
 /* Code mirror styles */
-.cm-matchhighlight { background-color: #474747; }
-.CodeMirror-selection-highlight-scrollbar { background-color: #569cd6; }
 .CodeMirror-vscrollbar { width: 9px; }
 .CodeMirror-gutters { left: 0px; height: 220px; }
 .CodeMirror-gutter.CodeMirror-linenumbers { width: 29px; }

@@ -6,18 +6,23 @@ const tabs = {
     libraries: document.querySelector('.tab.libraries')
 };
 
+const valid_tabs = [ 'requests', 'websockets', 'scripts', 'editor', 'libraries' ];
+
+let current = 'requests';
+
+
 const methods = [ 'GET', 'POST', 'PUT', 'PATCH', 'HEAD', 'DELETE', 'COPY', 'OPTIONS', 'LINK', 'UNLINK', 'PURGE', 'LOCK', 'UNLOCK', 'PROPFIND', 'VIEW', 'TRACE' ];
 
 const elem = {
     requests: document.getElementById('request-container'),
+    nav: document.getElementById('nav')
 };
 
 let id_index = 0;
 const get_id = () => ++id_index;
 
-let current = 'requests';
-
-function select(tab, that) {
+// Select new tab
+function select (tab) {
     let elem = tabs[tab];
     
     if (elem === undefined) return;
@@ -28,17 +33,42 @@ function select(tab, that) {
     // Show new tab
     elem.classList.remove('hidden');
 
+    // Refresh codemirror display
+    if (tab === 'editor') editor.cm.refresh();
+
     // Remove old selected tab
     document.getElementById('nav-' + current)?.classList.remove('selected');
 
     // Show current tab as selected
-    that.classList.add('selected');
+    document.getElementById('nav-' + tab)?.classList.add('selected');
 
     // Update current variable
     current = tab;
+
+    // Update window hash
+    window.location.hash = tab;
 }
 
-function accordion(elem, child) {
+// Set codemirror theme
+function set_theme(theme) {
+    let href = `codemirror/theme/${theme}.css`;
+
+    let elems = [...document.querySelectorAll('link[rel="stylesheet"]')];
+
+    if (elems.filter(e => e.href.includes(href)).length === 0) {
+        let style = document.createElement('link');
+        style.href = href;
+        style.rel = 'stylesheet';
+        style.type = 'text/css';
+        
+        document.head.appendChild(style);
+    }
+
+    editor.cm.setOption('theme', theme);
+}
+
+// Create accordian elements
+function accordion (elem, child) {
     child.style.overflow = 'hidden';
     child.style.transition = 'max-height 200ms ease-out';
     child.style.maxHeight = '0px';
@@ -53,6 +83,14 @@ function accordion(elem, child) {
         e.preventDefault();
     });
 }
+
+// Handle resize
+function handle_resize () {
+    editor.cm.display.wrapper.style.height = ( window.innerHeight - 41 ) + 'px';
+}
+
+window.addEventListener('resize', handle_resize);
+
 
 class URLHandler {
     constructor (url='') {
@@ -184,7 +222,7 @@ class ScriptEditor {
 
 // Add listener to request tab
 document.getElementById('nav-requests').addEventListener('click', function () {
-    select('requests', this);
+    select('requests');
 });
 
 // Demo content code
@@ -217,35 +255,38 @@ url2.add_request({ method: 'DELETE', path: '/api/v2/follow/users/623624' });
 // Create new script editor
 let editor = new ScriptEditor();
 
+// Resize everything initially
+handle_resize();
+
+// Set theme
+document.getElementById('inp-theme').addEventListener('change', function () {
+    set_theme(this.value);
+});
+
 // Add listener to navigation tab
 document.getElementById('nav-editor').addEventListener('click', function () {
 
     // Select the editor tab
-    select('editor', this);
-
-    // Refresh codemirror editor
-    editor.cm.refresh();
+    select('editor');
 });
 
 
 
 // Add listener to websocket tab
-document.getElementById('nav-websockets').addEventListener('click', function () { select('websockets', this); });
+document.getElementById('nav-websockets').addEventListener('click', function () { select('websockets'); });
 
 
 
 // Add listener to scripts tab
-document.getElementById('nav-scripts').addEventListener('click', function () { select('scripts', this); });
+document.getElementById('nav-scripts').addEventListener('click', function () { select('scripts'); });
 
 
 
 // Add listener to libraries tab
 document.getElementById('nav-libraries').addEventListener('click', function () {
-    select('libraries', this);
+    select('libraries');
 });
 
-
-
-
-
-
+let hash = window.location.hash.slice(1);
+if (valid_tabs.includes(hash)) current = hash;
+select(current);
