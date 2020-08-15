@@ -32,6 +32,7 @@ body {
     display: none !important;
 }
 
+/* Gradient colors */
 .gradient-grey {
     background: #363636;
     background: -moz-linear-gradient(45deg,  #363636 0%, #2b2b2b 100%);
@@ -48,6 +49,8 @@ body {
     filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#dc30f6', endColorstr='#0772ff',GradientType=1 );
 }
 
+
+/* Accordian styles */
 .accordion {
     transition: color 250ms ease;
     text-overflow: ellipsis;
@@ -80,3 +83,9 @@ body {
     color: #fff;
 }
 
+/* Code mirror styles */
+.cm-matchhighlight { background-color: #474747; }
+.CodeMirror-selection-highlight-scrollbar { background-color: #569cd6; }
+.CodeMirror-vscrollbar { width: 9px; }
+.CodeMirror-gutters { left: 0px; height: 220px; }
+.CodeMirror-gutter.CodeMirror-linenumbers { width: 29px; }

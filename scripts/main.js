@@ -17,13 +17,6 @@ const get_id = () => ++id_index;
 
 let current = 'requests';
 
-// Add listeners to nav bar
-document.getElementById('nav-requests')  .addEventListener('click', function () { select('requests',   this); });
-document.getElementById('nav-websockets').addEventListener('click', function () { select('websockets', this); });
-document.getElementById('nav-scripts')   .addEventListener('click', function () { select('scripts',    this); });
-document.getElementById('nav-editor')    .addEventListener('click', function () { select('editor',     this); });
-document.getElementById('nav-libraries') .addEventListener('click', function () { select('libraries',  this); });
-
 function select(tab, that) {
     let elem = tabs[tab];
     
@@ -116,6 +109,108 @@ class URLHandler {
     }
 }
 
+class ScriptEditor {
+    constructor () {
+        this.editor = {};
+
+        this.initiate();
+    }
+
+    initiate () {
+
+        // Create editor from textarea
+        this.cm = CodeMirror.fromTextArea(document.getElementById('ta-selected-script'), {
+            highlightSelectionMatches: { showToken: /\w/, annotateScrollbar: true },
+            gutters: ['CodeMirror-linenumbers', 'CodeMirror-foldgutter'],
+            extraKeys: {
+                'Esc': cm => {
+                    if (cm.getOption('fullScreen')) cm.setOption('fullScreen', false); 
+                },
+                'F11': cm => cm.setOption('fullScreen', !cm.getOption('fullScreen')),
+                'Ctrl-Q': cm => cm.foldCode(cm.getCursor()),
+                'Ctrl-S': cm => this.save_script(),
+                'Alt-F': 'findPersistent'
+            },
+            autoCloseBrackets: true,
+            styleActiveLine: true,
+            indentWithTabs: false,
+            theme: 'vscode-dark',
+            lineWrapping: true,
+            mode: 'javascript',
+            lineNumbers: true,
+            spellcheck: true,
+            foldGutter: true,
+            indentUnit: 4,
+            tabSize: 4
+        });
+
+        this.cm.setValue('console.log("Hello world!");');
+
+        // TODO Save button
+        //document.getElementById('btn-save-script').addEventListener('click', () => { this.save_script(); });
+    }
+
+    update_tabs(scripts) {
+        //while (parent.firstChild)
+        //    parent.removeChild(parent.lastChild);
+
+        
+    }
+
+    save_script() {
+
+    }
+
+    update_script(id, content='console.log(\'Hello World!\');', name='New Script', active=true) {
+        
+    }
+
+    get_script(id, callback=()=>{}) {
+        
+    }
+
+    remove_script(id) {
+        
+    }
+
+    get(key, callback=()=>{}) {
+        chrome.storage.local.get(key, data => {
+            let content = data[key];
+            callback(content);
+        });
+    }
+
+    set(key, value='') {
+        let json = {};
+
+        json[key] = value;
+        chrome.storage.local.set(json);
+    }
+}
+
+// Create new script editor
+let editor = new ScriptEditor();
+
+// Add listener to navigation tab
+document.getElementById('nav-editor').addEventListener('click', function () {
+
+    // Select the editor tab
+    select('editor', this);
+
+    // Refresh codemirror editor
+    editor.cm.refresh();
+});
+
+// Add listeners to nav bar
+document.getElementById('nav-requests')  .addEventListener('click', function () { select('requests',   this); });
+document.getElementById('nav-websockets').addEventListener('click', function () { select('websockets', this); });
+document.getElementById('nav-scripts')   .addEventListener('click', function () { select('scripts',    this); });
+
+document.getElementById('nav-libraries') .addEventListener('click', function () { select('libraries',  this); });
+
+
+
+// Demo content code
 let url = new URLHandler('https://www.youtube.com/watch?v=1yQGkVhO6mQ');
 
 url.add_request({ method: 'GET', path: '/api/v2/views.php/api/v2/views.php/api/v2/views.php/api/v2/views.php/api/v2/views.php/api/v2/views.php' });
@@ -139,3 +234,5 @@ url2.add_request({ method: 'POST', path: '/api/v2/get_current_location.php' });
 url2.add_request({ method: 'PATCH', path: '/api/v2/access.php' });
 url2.add_request({ method: 'PUT', path: '/api/v2/subscribe/users/4325' });
 url2.add_request({ method: 'DELETE', path: '/api/v2/follow/users/623624' });
+
+
