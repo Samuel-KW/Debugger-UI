@@ -1,0 +1,79 @@
+#content {
+    background-color: #424242;
+    height: 100%;
+    width: 100%;
+}
+
+#content .tab {
+    flex-wrap: wrap;
+    display: flex;
+    height: 100%;
+    width: 100%;
+}
+
+#content .main {
+    overflow: hidden auto;
+    height: 100%;
+    flex: 70%;
+}
+
+#content .main h1 {
+    padding: 20px 20px 0 20px;
+    font-size: 24px;
+}
+
+#request-container {
+    padding: 20px;
+}
+
+#request-container .container {
+    margin-bottom: 20px;
+}
+
+#request-container .domain {
+    font-size: 20px;
+}
+
+#request-container .request {
+    text-overflow: ellipsis;
+    padding: 5px 0 0 10px;
+    overflow: hidden;
+}
+
+.method:before {
+    font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+    margin-bottom: 10px;
+    font-weight: 700;
+    text-align: left;
+    color: #969696;
+    font-size: 12px;
+}
+
+.method.get:before {
+    margin-right: 24px;
+    color:#249c47;
+    content: 'GET';
+}
+
+.method.post:before {
+    margin-right: 16px;
+    color: #ffb400;
+    content: 'POST';
+}
+
+.method.put:before {
+    margin-right: 23px;
+    color: #097bed;
+    content: 'PUT';
+}
+
+.method.patch:before {
+    margin-right: 8px;
+    content: 'PATCH';
+}
+
+.method.delete:before {
+    margin-right: 25px;
+    color:#eb2013;
+    content: 'DEL';
+}
