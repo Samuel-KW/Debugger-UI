@@ -1,3 +1,6 @@
 
 # Ignore vscode files
 .vscode/
+
+# Ignore codemirror library
+codemirror/
