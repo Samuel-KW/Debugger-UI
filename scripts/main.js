@@ -83,7 +83,7 @@ class URLHandler {
 
     add_request (data={}) {
 
-        const id = get_id();
+        const id = data.id ?? get_id();
 
         let parent = document.createElement('div');
         parent.className = 'request';
