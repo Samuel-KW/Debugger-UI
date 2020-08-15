@@ -111,12 +111,6 @@ class URLHandler {
 
 class ScriptEditor {
     constructor () {
-        this.editor = {};
-
-        this.initiate();
-    }
-
-    initiate () {
 
         // Create editor from textarea
         this.cm = CodeMirror.fromTextArea(document.getElementById('ta-selected-script'), {
@@ -144,10 +138,8 @@ class ScriptEditor {
             tabSize: 4
         });
 
+        // Set a placeholder value
         this.cm.setValue('console.log("Hello world!");');
-
-        // TODO Save button
-        //document.getElementById('btn-save-script').addEventListener('click', () => { this.save_script(); });
     }
 
     update_tabs(scripts) {
@@ -188,27 +180,12 @@ class ScriptEditor {
     }
 }
 
-// Create new script editor
-let editor = new ScriptEditor();
 
-// Add listener to navigation tab
-document.getElementById('nav-editor').addEventListener('click', function () {
 
-    // Select the editor tab
-    select('editor', this);
-
-    // Refresh codemirror editor
-    editor.cm.refresh();
+// Add listener to request tab
+document.getElementById('nav-requests').addEventListener('click', function () {
+    select('requests', this);
 });
-
-// Add listeners to nav bar
-document.getElementById('nav-requests')  .addEventListener('click', function () { select('requests',   this); });
-document.getElementById('nav-websockets').addEventListener('click', function () { select('websockets', this); });
-document.getElementById('nav-scripts')   .addEventListener('click', function () { select('scripts',    this); });
-
-document.getElementById('nav-libraries') .addEventListener('click', function () { select('libraries',  this); });
-
-
 
 // Demo content code
 let url = new URLHandler('https://www.youtube.com/watch?v=1yQGkVhO6mQ');
@@ -234,5 +211,41 @@ url2.add_request({ method: 'POST', path: '/api/v2/get_current_location.php' });
 url2.add_request({ method: 'PATCH', path: '/api/v2/access.php' });
 url2.add_request({ method: 'PUT', path: '/api/v2/subscribe/users/4325' });
 url2.add_request({ method: 'DELETE', path: '/api/v2/follow/users/623624' });
+
+
+
+// Create new script editor
+let editor = new ScriptEditor();
+
+// Add listener to navigation tab
+document.getElementById('nav-editor').addEventListener('click', function () {
+
+    // Select the editor tab
+    select('editor', this);
+
+    // Refresh codemirror editor
+    editor.cm.refresh();
+});
+
+
+
+// Add listener to websocket tab
+document.getElementById('nav-websockets').addEventListener('click', function () { select('websockets', this); });
+
+
+
+// Add listener to scripts tab
+document.getElementById('nav-scripts').addEventListener('click', function () { select('scripts', this); });
+
+
+
+// Add listener to libraries tab
+document.getElementById('nav-libraries').addEventListener('click', function () {
+    select('libraries', this);
+});
+
+
+
+
 
 
