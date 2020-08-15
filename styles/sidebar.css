@@ -1,0 +1,56 @@
+#content .sidebar {
+    background-color: #282828;
+    overflow: hidden auto;
+    height: 100%;
+    flex: 30%;
+}
+
+#content .sidebar h2 {
+    background-color: #3b3b3b;
+    font-size: 24px;
+    padding: 20px;
+}
+
+#content .sidebar .settings {
+    font-size: 16px;
+    padding: 20px;
+}
+
+#content .sidebar .settings {
+    justify-content: space-evenly;
+    flex-wrap: wrap;
+    display: flex;
+}
+
+#content .sidebar .settings div {
+    width: 250px;
+    margin: 5px;
+}
+
+#content .sidebar .settings label {
+    vertical-align: middle;
+    width: 100%;
+}
+
+#content .sidebar .settings input {
+    box-shadow: 1px 1px 2px #1f1f1f;
+    border: 1px solid #3C3C3C;
+    background-color: #1E1E1E;
+    border-radius: 3px;
+    color: #D4D4D4;
+    outline: none;
+    padding: 3px;
+}
+
+#content .sidebar .settings input[type=checkbox] {
+    vertical-align: middle;
+}
+
+#content .sidebar .settings input[type=text] {
+    
+    
+    margin-top: 5px;
+    
+    
+    width: 100%;
+}
