@@ -1,0 +1,28 @@
+#nav {
+    background-color: #232323;
+    padding: 15px 0 8px 15px;
+    position: relative;
+    user-select: none;
+    width: 100%;
+}
+
+#nav a {
+    border-radius: 5px 5px 0 0;
+    background-color: #2b2b2b;
+    text-decoration: none;
+    text-align: center;
+    padding: 5px 10px;
+    cursor: pointer;
+    color: #808080;
+    font-size: 18px;
+    height: 100%;
+}
+
+#nav a.selected {
+    background-color: #424242;
+    color: #fbfbfb;
+}
+
+#nav a:not(.selected):hover {
+    background-color: #343434;
+}
