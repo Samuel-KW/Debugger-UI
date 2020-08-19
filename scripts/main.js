@@ -275,8 +275,6 @@ document.getElementById('nav-editor').addEventListener('click', function () {
     select('editor');
 });
 
-
-
 // Add listener to websocket tab
 document.getElementById('nav-websockets').addEventListener('click', function () { select('websockets'); });
 
