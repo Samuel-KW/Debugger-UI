@@ -35,6 +35,7 @@ function select (tab) {
 
     // Refresh codemirror display
     if (tab === 'editor') editor.cm.refresh();
+    if (tab === 'scripts') viewer.cm.refresh();
 
     // Remove old selected tab
     document.getElementById('nav-' + current)?.classList.remove('selected');
@@ -87,6 +88,7 @@ function accordion (elem, child) {
 // Handle resize
 function handle_resize () {
     editor.cm.display.wrapper.style.height = ( window.innerHeight - 41 ) + 'px';
+    viewer.cm.display.wrapper.style.height = ( window.innerHeight - 41 ) + 'px';
 }
 
 window.addEventListener('resize', handle_resize);
@@ -218,7 +220,38 @@ class ScriptEditor {
     }
 }
 
+class ScriptViewer {
+    constructor () {
 
+        // Create editor from textarea
+        this.cm = CodeMirror.fromTextArea(document.getElementById('ta-viewing-script'), {
+            highlightSelectionMatches: { showToken: /\w/, annotateScrollbar: true },
+            gutters: ['CodeMirror-linenumbers', 'CodeMirror-foldgutter'],
+            extraKeys: {
+                'Esc': cm => {
+                    if (cm.getOption('fullScreen')) cm.setOption('fullScreen', false); 
+                },
+                'F11': cm => cm.setOption('fullScreen', !cm.getOption('fullScreen')),
+                'Alt-F': 'findPersistent'
+            },
+            autoCloseBrackets: true,
+            styleActiveLine: true,
+            indentWithTabs: false,
+            theme: 'vscode-dark',
+            readOnly: 'nocursor',
+            lineWrapping: true,
+            mode: 'javascript',
+            lineNumbers: true,
+            spellcheck: true,
+            foldGutter: true,
+            indentUnit: 4,
+            tabSize: 4
+        });
+
+        // Set a placeholder value
+        this.cm.setValue('console.log("Pre-made script goes here");');
+    }
+}
 
 // Add listener to request tab
 document.getElementById('nav-requests').addEventListener('click', function () {
@@ -255,8 +288,8 @@ url2.add_request({ method: 'DELETE', path: '/api/v2/follow/users/623624' });
 // Create new script editor
 let editor = new ScriptEditor();
 
-// Resize everything initially
-handle_resize();
+
+
 
 // Set theme
 document.getElementById('inp-theme').addEventListener('change', function () {
@@ -268,6 +301,8 @@ document.getElementById('inp-selected-script').addEventListener('change', functi
     editor.cm.setValue(`fetch('scripts/${this.value}');`);
 });
 
+
+
 // Add listener to navigation tab
 document.getElementById('nav-editor').addEventListener('click', function () {
 
@@ -275,10 +310,14 @@ document.getElementById('nav-editor').addEventListener('click', function () {
     select('editor');
 });
 
+
+
 // Add listener to websocket tab
 document.getElementById('nav-websockets').addEventListener('click', function () { select('websockets'); });
 
 
+
+let viewer = new ScriptViewer();
 
 // Add listener to scripts tab
 document.getElementById('nav-scripts').addEventListener('click', function () { select('scripts'); });
@@ -290,6 +329,14 @@ document.getElementById('nav-libraries').addEventListener('click', function () {
     select('libraries');
 });
 
+
+
+// Keep tab opened when page is reloaded
 let hash = window.location.hash.slice(1);
 if (valid_tabs.includes(hash)) current = hash;
 select(current);
+
+
+
+// Resize everything initially
+handle_resize();
