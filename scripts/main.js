@@ -263,6 +263,11 @@ document.getElementById('inp-theme').addEventListener('change', function () {
     set_theme(this.value);
 });
 
+// Set current script
+document.getElementById('inp-selected-script').addEventListener('change', function () {
+    editor.cm.setValue(`fetch('scripts/${this.value}');`);
+});
+
 // Add listener to navigation tab
 document.getElementById('nav-editor').addEventListener('click', function () {
 
