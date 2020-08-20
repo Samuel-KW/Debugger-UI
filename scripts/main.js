@@ -201,19 +201,30 @@ class ScriptEditor {
     }
 
     save_script() {
+        let code = editor.cm.getValue();
 
+        // TODO Save code somewhere
     }
 
     update_script(id, content='console.log(\'Hello World!\');', name='New Script', active=true) {
-        
+        let script = {
+            updated: Date.now(),
+            script: content,
+            name: name,
+            desc: '',
+            active,
+            id,
+        };
+
+        // TODO Replace saved script with this
     }
 
     get_script(id, callback=()=>{}) {
-        
+        //return this.scripts[id] 
     }
 
     remove_script(id) {
-        
+        //this.scripts = this.scripts.filter(e => e.id != id);
     }
 
     get(key, callback=()=>{}) {
