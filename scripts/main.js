@@ -182,11 +182,22 @@ class ScriptEditor {
         this.cm.setValue('console.log("Hello world!");');
     }
 
-    update_tabs(scripts) {
-        //while (parent.firstChild)
-        //    parent.removeChild(parent.lastChild);
+    update_scripts(scripts) {
+        let parent = document.getElementById('inp-selected-script');
 
-        
+        while (parent.firstChild)
+            parent.removeChild(parent.lastChild);
+
+        for (let i = 0; i < scripts.length; ++i) {
+            let script = scripts[i],
+                elem = document.createElement('option');
+
+            elem.value = script.src;
+            elem.title = script.desc;
+            elem.textContent = script.name;
+
+            parent.appendChild(elem);
+        }
     }
 
     save_script() {
