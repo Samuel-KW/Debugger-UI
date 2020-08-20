@@ -273,6 +273,30 @@ class ScriptViewer {
         // Set a placeholder value
         this.cm.setValue('console.log("Pre-made script goes here");');
     }
+
+    update_scripts(scripts) {
+        let parent = document.getElementById('script-container');
+
+        while (parent.firstChild)
+            parent.removeChild(parent.lastChild);
+
+        for (let i = 0; i < scripts.length; ++i) {
+            let script = scripts[i],
+                elem = document.createElement('div'),
+                content = document.createElement('span');
+
+            elem.className = 'script';
+
+            content.setAttribute('src', script.src);
+            content.textContent = script.name;
+            content.title = script.desc;
+
+            elem.appendChild(content);
+            parent.appendChild(elem);
+        }
+
+        parent.firstChild.classList.add('selected');
+    }
 }
 
 // Add listener to request tab
