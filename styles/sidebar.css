@@ -12,14 +12,11 @@
 }
 
 #content .sidebar .settings {
-    font-size: 16px;
-    padding: 20px;
-}
-
-#content .sidebar .settings {
-    justify-content: space-evenly;
+    justify-content: normal;
     flex-wrap: wrap;
+    font-size: 16px;
     display: flex;
+    padding: 20px;
 }
 
 #content .sidebar .settings div {
@@ -53,4 +50,18 @@
     
     
     width: 100%;
+}
+
+#script-container .script {
+    font-size: 20px;
+    color: #a3a3a3;
+    cursor: pointer;
+}
+
+#script-container .script:hover {
+    color: #e0e0e0;
+}
+
+#script-container .script.selected {
+    color: #fff;
 }
