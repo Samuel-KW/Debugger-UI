@@ -67,9 +67,20 @@
 }
 
 #created-date {
+    
     padding: 20px;
 }
 
 #created-date:before {
     content: 'Created: ';
+    color: #a7a7a7;
+}
+
+#updated-date {
+    padding: 20px;
+}
+
+#updated-date:before {
+    content: 'Updated: ';
+    color: #a7a7a7;
 }
