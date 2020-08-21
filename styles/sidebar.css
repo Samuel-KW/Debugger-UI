@@ -65,3 +65,11 @@
 #script-container .script.selected {
     color: #fff;
 }
+
+#created-date {
+    padding: 20px;
+}
+
+#created-date:before {
+    content: 'Created: ';
+}
