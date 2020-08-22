@@ -77,3 +77,11 @@
     color:#eb2013;
     content: 'DEL';
 }
+
+#ws-headers .header-type {
+    color: #9c9c9c;
+}
+
+#ws-headers .header-value {
+    color: #c0c0c0;
+}
