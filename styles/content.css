@@ -85,3 +85,19 @@
 #ws-headers .header-value {
     color: #c0c0c0;
 }
+
+.websockets .main {
+    display: flex;
+    justify-content: normal;
+}
+
+.websockets .main .requests {
+    background-color: #3f3f3f;
+    border-right: 5px solid #3a3a3a;
+    flex: 30%;
+}
+
+.websockets .main .details {
+    margin-left: 20px;
+    flex: 70%;
+}
