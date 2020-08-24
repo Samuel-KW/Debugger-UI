@@ -8,9 +8,6 @@ const tabs = {
 
 const valid_tabs = [ 'requests', 'websockets', 'scripts', 'editor', 'libraries' ];
 
-let current = 'requests';
-
-
 const methods = [ 'GET', 'POST', 'PUT', 'PATCH', 'HEAD', 'DELETE', 'COPY', 'OPTIONS', 'LINK', 'UNLINK', 'PURGE', 'LOCK', 'UNLOCK', 'PROPFIND', 'VIEW', 'TRACE' ];
 
 const elem = {
@@ -18,8 +15,11 @@ const elem = {
     nav: document.getElementById('nav')
 };
 
-let id_index = 0;
 const get_id = () => ++id_index;
+
+let current = 'requests',
+    id_index = 0;
+
 
 // Select new tab
 function select (tab) {
@@ -92,7 +92,41 @@ function handle_resize () {
     viewer.cm.display.wrapper.style.height = ( window.innerHeight - 41 ) + 'px';
 }
 
-window.addEventListener('resize', handle_resize);
+// Get saved data
+function get (key) {
+    return new Promise((resolve, reject) => {
+
+        // If ran from chrome extension
+        if (chrome && chrome.storage && chrome.storage.local) {
+
+            // Fetch key from local storage
+            chrome.storage.local.get(key, data => {
+                let content = data[key];
+                resolve(content);
+            });
+
+        } else {
+            
+            resolve(localStorage.getItem(key));
+        }
+    });
+}
+
+// Set saved data
+function set (key, value) {
+
+    // If ran from chrome extension
+    if (chrome && chrome.storage && chrome.storage.local) {
+        let json = {};
+
+        json[key] = value;
+        chrome.storage.local.set(json);
+
+    } else {
+
+        localStorage.setItem(key, value);
+    }
+}
 
 
 class URLHandler {
@@ -286,41 +320,9 @@ class ScriptViewer {
     }
 }
 
-// Get saved data
-function get (key) {
-    return new Promise((resolve, reject) => {
 
-        // If ran from chrome extension
-        if (chrome && chrome.storage && chrome.storage.local) {
-
-            // Fetch key from local storage
-            chrome.storage.local.get(key, data => {
-                let content = data[key];
-                resolve(content);
-            });
-
-        } else {
-            
-            resolve(localStorage.getItem(key));
-        }
-    });
-}
-
-// Set saved data
-function set (key, value) {
-
-    // If ran from chrome extension
-    if (chrome && chrome.storage && chrome.storage.local) {
-        let json = {};
-
-        json[key] = value;
-        chrome.storage.local.set(json);
-
-    } else {
-
-        localStorage.setItem(key, value);
-    }
-}
+// Handle window resizing
+window.addEventListener('resize', handle_resize);
 
 // Add listener to request tab
 document.getElementById('nav-requests').addEventListener('click', function () {
