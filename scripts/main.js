@@ -376,6 +376,8 @@ get('theme').then(theme => {
     set_theme(theme);
 });
 
+
+
 // Set current script
 document.getElementById('inp-selected-script').addEventListener('change', function () {
     editor.cm.setValue(`fetch('scripts/${this.value}');`);
