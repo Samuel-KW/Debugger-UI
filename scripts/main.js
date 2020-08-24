@@ -66,6 +66,7 @@ function set_theme(theme) {
     }
 
     editor.cm.setOption('theme', theme);
+    viewer.cm.setOption('theme', theme);
 }
 
 // Create accordian elements
@@ -300,7 +301,7 @@ function get (key) {
 
         } else {
             
-            return localStorage.getItem(key);
+            resolve(localStorage.getItem(key));
         }
     });
 }
@@ -362,6 +363,15 @@ let editor = new ScriptEditor();
 // Set theme
 document.getElementById('inp-theme').addEventListener('change', function () {
     set_theme(this.value);
+    set('theme', this.value);
+});
+
+// Load theme on page load
+get('theme').then(theme => {
+    theme = theme ?? 'vscode-dark';
+
+    document.getElementById('inp-theme').value = theme;
+    set_theme(theme);
 });
 
 // Set current script
