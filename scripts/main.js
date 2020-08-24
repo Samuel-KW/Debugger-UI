@@ -227,7 +227,8 @@ class ScriptEditor {
         //this.scripts = this.scripts.filter(e => e.id != id);
     }
 
-    get(key, callback=()=>{}) {
+    get(key) {
+        
         chrome.storage.local.get(key, data => {
             let content = data[key];
             callback(content);
@@ -297,6 +298,25 @@ class ScriptViewer {
 
         parent.firstChild.classList.add('selected');
     }
+}
+
+function get (key) {
+    return new Promise((resolve, reject) => {
+
+        // If ran from chrome extension
+        if (chrome && chrome.storage && chrome.storage.local) {
+
+            // Fetch key from local storage
+            chrome.storage.local.get(key, data => {
+                let content = data[key];
+                resolve(content);
+            });
+
+        } else {
+            
+            return localStorage.getItem(key);
+        }
+    });
 }
 
 // Add listener to request tab
