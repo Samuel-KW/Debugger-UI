@@ -226,21 +226,6 @@ class ScriptEditor {
     remove_script(id) {
         //this.scripts = this.scripts.filter(e => e.id != id);
     }
-
-    get(key) {
-        
-        chrome.storage.local.get(key, data => {
-            let content = data[key];
-            callback(content);
-        });
-    }
-
-    set(key, value='') {
-        let json = {};
-
-        json[key] = value;
-        chrome.storage.local.set(json);
-    }
 }
 
 class ScriptViewer {
@@ -300,6 +285,7 @@ class ScriptViewer {
     }
 }
 
+// Get saved data
 function get (key) {
     return new Promise((resolve, reject) => {
 
@@ -317,6 +303,22 @@ function get (key) {
             return localStorage.getItem(key);
         }
     });
+}
+
+// Set saved data
+function set (key, value) {
+
+    // If ran from chrome extension
+    if (chrome && chrome.storage && chrome.storage.local) {
+        let json = {};
+
+        json[key] = value;
+        chrome.storage.local.set(json);
+
+    } else {
+
+        localStorage.setItem(key, value);
+    }
 }
 
 // Add listener to request tab
