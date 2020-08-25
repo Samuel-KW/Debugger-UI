@@ -503,7 +503,7 @@ set('scripts', scripts = {
         desc: 'Andrew Gump had always loved urban Sidney with its unkempt, ugly umbrellas. It was a place where he felt worried',
         author: 'Samuel Walls',
         updated: 1598326712028,
-        code: '// Hello World!\n\nconsole.log("Hello World!");',
+        code: '// The Gumpster is around, watch out!\n\nconsole.log("Hello World!");',
         active: false
     },
     '1598326646611-2fvbxj8v6': {
@@ -511,15 +511,31 @@ set('scripts', scripts = {
         desc: 'He was a tactless, considerate, wine drinker with wide fingernails and brunette ankles. His friends saw him as a jealous, joyous juggler. Once, he had even brought a fair baby back from the brink of death. That\'s the sort of man he was.',
         author: 'Samuel Walls',
         updated: 1598326712125,
-        code: '// Noodle party!\n\nconsole.log("Hello you noodler!");',
+        code: '// Don\'t mess with Andrew Gump.\n\nconsole.log("Hello you noodler!");',
         active: true
     },
     '1598326646699-4fvbxjx8v6': {
         name: 'Andrew Gump P3',
-        desc: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.',
+        desc: 'Andrew walked over to the window and reflected on his sunny surroundings. The sleet rained like drinking lizards.',
         author: 'Samuel Walls',
-        updated: 1598326712125,
-        code: '// Noodle party!\n\nconsole.log("Hello you noodler!");',
+        updated: 1598326712154,
+        code: '// Andrew know everything he needs to know...\n\nconsole.log("Hello you noodler!");',
+        active: true
+    },
+    '1598326646914-1fvbf3fx8v6': {
+        name: 'Andrew Gump P4',
+        desc: 'Then he saw something in the distance, or rather someone. It was the figure of Gregory Clifford. Gregory was an admirable dolphin with sloppy fingernails and beautiful ankles.',
+        author: 'Samuel Walls',
+        updated: 1598326712223,
+        code: '// Gump is always watching...\n\nconsole.log("Hello you noodler!");',
+        active: true
+    },
+    '1598326649182-534g53fx8v6': {
+        name: 'Andrew Gump P5',
+        desc: 'Andrew gulped. He was not prepared for Gregory. As Andrew stepped outside and Gregory came closer, he could see the cute glint in his eye.',
+        author: 'Samuel Walls',
+        updated: 1598326712279,
+        code: '// Mr Gump is ready!\n\nconsole.log("Hello you noodler!");',
         active: true
     }
 });
