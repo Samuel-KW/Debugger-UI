@@ -15,10 +15,15 @@ const elem = {
     nav: document.getElementById('nav')
 };
 
-const get_id = () => ++id_index;
+// Get session unique ID
+const get_sid = () => ++id_index;
+
+// Get random ID
+const get_uid = () => Date.now() + Math.random().toString(36).substr(2, 9);
 
 let current = 'requests',
-    id_index = 0;
+    id_index = 0,
+    scripts = {};
 
 
 // Select new tab
@@ -132,7 +137,7 @@ function set (key, value) {
 class URLHandler {
     constructor (url='') {
 
-        this.id = get_id();
+        this.id = get_sid();
 
         this.header = document.createElement('div');
         this.header.className = 'domain accordion';
@@ -151,7 +156,7 @@ class URLHandler {
 
     add_request (data={}) {
 
-        const id = data.id ?? get_id();
+        const id = data.id ?? get_sid();
 
         let parent = document.createElement('div');
         parent.className = 'request';
@@ -368,13 +373,6 @@ document.getElementById('inp-theme').addEventListener('change', function () {
     set('theme', this.value);
 });
 
-// Load theme on page load
-get('theme').then(theme => {
-    theme = theme ?? 'vscode-dark';
-
-    document.getElementById('inp-theme').value = theme;
-    set_theme(theme);
-});
 
 
 
@@ -422,3 +420,30 @@ select(current);
 
 // Resize everything initially
 handle_resize();
+
+
+// Page is active
+set('active', true);
+
+// Load theme on page load
+get('theme').then(theme => {
+    theme = theme ?? 'vscode-dark';
+
+    document.getElementById('inp-theme').value = theme;
+    set_theme(theme);
+});
+
+// Detect and load scripts
+get('theme').then(theme => {
+    theme = theme ?? 'vscode-dark';
+
+    document.getElementById('inp-theme').value = theme;
+    set_theme(theme);
+});
+
+
+
+// When the page is closed
+window.onbeforeunload = () => {
+    set('active', false);
+};
