@@ -322,7 +322,7 @@ class ScriptViewer {
 
             elem.className = 'script';
             elem.setAttribute('id', id);
-            
+
             content.textContent = script.name;
             content.title = script.desc;
 
@@ -332,13 +332,15 @@ class ScriptViewer {
 
         let selected = parent.firstChild;
         if (selected) {
-            this.selected = selected.getAttribute('id');
-            selected.classList.add('selected');
+            
         }
     }
 
     select_script(id) {
-
+        let parent = document.getElementById('script-container'),
+            prev = 
+        selected.classList.add('selected');
+        this.selected = selected.getAttribute('id');
     }
 }
 
