@@ -19,7 +19,8 @@ const elem = {
 const get_sid = () => ++id_index;
 
 // Get random ID
-const get_uid = () => Date.now() + Math.random().toString(36).substr(2, 9);
+const get_uid = () => Date.now() + '-' + Math.random().toString(36).substr(2, 9);
+
 
 let current = 'requests',
     id_index = 0,
@@ -111,8 +112,12 @@ function get (key) {
             });
 
         } else {
+            let resp = localStorage.getItem(key);
+
+            // Attempt to parse value
+            try { resp = JSON.parse(resp); } catch(e) {}
             
-            resolve(localStorage.getItem(key));
+            resolve(resp);
         }
     });
 }
@@ -129,6 +134,8 @@ function set (key, value) {
 
     } else {
 
+        // Stringify objects
+        if (typeof value == 'object') value = JSON.stringify(value);
         localStorage.setItem(key, value);
     }
 }
@@ -434,11 +441,13 @@ get('theme').then(theme => {
 });
 
 // Detect and load scripts
-get('theme').then(theme => {
-    theme = theme ?? 'vscode-dark';
+get('scripts').then(scripts => {
 
-    document.getElementById('inp-theme').value = theme;
-    set_theme(theme);
+    // Handle falsy values
+    if (!scripts) set('scripts', {});
+
+    editor.update_scripts(scripts);
+    viewer.update_scripts(scripts);
 });
 
 
