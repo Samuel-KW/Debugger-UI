@@ -331,14 +331,16 @@ class ScriptViewer {
         }
 
         let selected = parent.firstChild;
-        if (selected) {
-            
-        }
+        if (selected) this.select_script(selected);
     }
 
-    select_script(id) {
+    select_script(selected) {
         let parent = document.getElementById('script-container'),
-            prev = 
+            prev = parent.querySelector(`div[id="${this.selected}"]`);
+
+        prev?.classList?.remove('selected');
+
+        console.log(prev, selected);
         selected.classList.add('selected');
         this.selected = selected.getAttribute('id');
     }
