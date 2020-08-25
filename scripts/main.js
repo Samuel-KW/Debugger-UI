@@ -494,3 +494,32 @@ get('scripts').then(scripts => {
 window.onbeforeunload = () => {
     set('active', false);
 };
+
+
+// Testing scripts
+set('scripts', scripts = {
+    '1598326646634-6wvbxj8v6': {
+        name: 'Andrew Gump P1',
+        desc: 'Andrew Gump had always loved urban Sidney with its unkempt, ugly umbrellas. It was a place where he felt worried',
+        author: 'Samuel Walls',
+        updated: 1598326712028,
+        code: '// Hello World!\n\nconsole.log("Hello World!");',
+        active: false
+    },
+    '1598326646611-2fvbxj8v6': {
+        name: 'Andrew Gump P2',
+        desc: 'He was a tactless, considerate, wine drinker with wide fingernails and brunette ankles. His friends saw him as a jealous, joyous juggler. Once, he had even brought a fair baby back from the brink of death. That\'s the sort of man he was.',
+        author: 'Samuel Walls',
+        updated: 1598326712125,
+        code: '// Noodle party!\n\nconsole.log("Hello you noodler!");',
+        active: true
+    },
+    '1598326646699-4fvbxjx8v6': {
+        name: 'Andrew Gump P3',
+        desc: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.',
+        author: 'Samuel Walls',
+        updated: 1598326712125,
+        code: '// Noodle party!\n\nconsole.log("Hello you noodler!");',
+        active: true
+    }
+});
