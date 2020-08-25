@@ -278,6 +278,8 @@ class ScriptEditor {
 class ScriptViewer {
     constructor () {
 
+        this.selected = '';
+
         // Create editor from textarea
         this.cm = CodeMirror.fromTextArea(document.getElementById('ta-viewing-script'), {
             highlightSelectionMatches: { showToken: /\w/, annotateScrollbar: true },
@@ -313,14 +315,14 @@ class ScriptViewer {
         while (parent.firstChild)
             parent.removeChild(parent.lastChild);
 
-        for (let i = 0; i < scripts.length; ++i) {
-            let script = scripts[i],
+        for (let id in scripts) {
+            let script = scripts[id],
                 elem = document.createElement('div'),
                 content = document.createElement('span');
 
             elem.className = 'script';
-
-            content.setAttribute('src', script.src);
+            elem.setAttribute('id', id);
+            
             content.textContent = script.name;
             content.title = script.desc;
 
@@ -328,7 +330,15 @@ class ScriptViewer {
             parent.appendChild(elem);
         }
 
-        parent.firstChild?.classList?.add('selected');
+        let selected = parent.firstChild;
+        if (selected) {
+            this.selected = selected.getAttribute('id');
+            selected.classList.add('selected');
+        }
+    }
+
+    select_script(id) {
+
     }
 }
 
@@ -459,7 +469,7 @@ get('scripts').then(scripts => {
         set('scripts', scripts);
     }
 
-    editor.update_scripts(scripts);
+    //editor.update_scripts(scripts);
     viewer.update_scripts(scripts);
 });
 
