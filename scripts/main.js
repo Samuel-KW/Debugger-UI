@@ -503,9 +503,9 @@ set('scripts', scripts = {
         desc: 'Andrew Gump had always loved urban Sidney with its unkempt, ugly umbrellas. It was a place where he felt worried',
         author: 'Samuel Walls',
         updated: 1598326712028,
-        code: '// The Gumpster is around, watch out!\n\nconsole.log("Hello World!");',
+        code: '// The Gumpster is around, watch out!\n\nconsole.log("Hello you noodler!");',
         active: false
-    },
+    }, 
     '1598326646611-2fvbxj8v6': {
         name: 'Andrew Gump P2',
         desc: 'He was a tactless, considerate, wine drinker with wide fingernails and brunette ankles. His friends saw him as a jealous, joyous juggler. Once, he had even brought a fair baby back from the brink of death. That\'s the sort of man he was.',
