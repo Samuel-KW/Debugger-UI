@@ -12,7 +12,8 @@ const methods = [ 'GET', 'POST', 'PUT', 'PATCH', 'HEAD', 'DELETE', 'COPY', 'OPTI
 
 const elem = {
     requests: document.getElementById('request-container'),
-    nav: document.getElementById('nav')
+    nav: document.getElementById('nav'),
+    tab: document.getElementById('content')
 };
 
 // Get session unique ID
@@ -26,6 +27,24 @@ let current = 'requests',
     id_index = 0,
     scripts = {};
 
+
+class TabHandler {
+    constructor () {
+        this.tabs = {};
+    }
+
+    add (name, html) {
+        let container = document.createElement('div');
+        container.className = name + ' tab hidden';
+        container.innerHTML = html;
+
+        elem.tab.appendChild(container);
+
+        this.tabs[name] = {};
+    }
+}
+
+let tab = new TabHandler();
 
 // Select new tab
 function select (tab) {
