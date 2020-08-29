@@ -38,6 +38,10 @@ class Tab {
     hide() {
         this.container.classList.add('hidden');
         this.title.classList.remove('selected');
+
+        // Refresh content
+        this.refresh();
+
         return this;
     }
 
@@ -45,7 +49,7 @@ class Tab {
         this.container.classList.remove('hidden');
         this.title.classList.add('selected');
 
-        // Reload content
+        // Refresh content
         this.refresh();
 
         return this;
@@ -69,17 +73,23 @@ class TabHandler {
         this.tabs = {};
     }
 
-    add(name, desc, html) {
+    add(name, desc, html, onrefresh) {
 
         if (this.tabs[name]) console.warn('Duplicate class name found:', name);
 
         let tab = new Tab(name, desc);
         tab.html = html;
-
+        tab.onrefresh = onrefresh;
         tab.title.addEventListener('click', () => this.select(name));
 
         this.tabs[name] = tab;
-        if (this.selected === undefined) this.select(name);
+
+        if (this.selected === undefined) {
+            this.selected = name;
+            tab.show();
+        }
+
+        if (window.location.hash.slice(1) === name) this.select(name);
 
         return this.tabs[name];
     }
@@ -181,6 +191,7 @@ function set(key, value) {
     }
 }
 
+// Handle page load events
 window.addEventListener('load', function() {
     // Page is active
     set('active', true);
