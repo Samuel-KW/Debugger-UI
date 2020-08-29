@@ -55,7 +55,6 @@ class Tab {
         return this;
     }
 
-
     get html () { return this.container.innerHTML; }
     set html (html) { this.container.innerHTML = html; }
 
@@ -68,6 +67,8 @@ class TabHandler {
     }
 
     add (name, desc, html) {
+
+        if (this.tabs[name]) console.warn('Duplicate class name found:', name);
 
         let tab = new Tab(name, desc);
         tab.html = html;
@@ -84,9 +85,9 @@ class TabHandler {
         let old = this.tabs[this.selected],
             selected = this.tabs[name];
 
-        if (old) old.container.classList.add('hidden');
+        if (old) old.hide();
 
-        selected.classList.remove('hidden');
+        selected.show();
 
         this.selected = name;
     }
