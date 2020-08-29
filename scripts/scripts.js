@@ -81,14 +81,17 @@ class ScriptViewer {
 }
 
 (function (html) {
-    let container = tab.add('Scripts', 'View and edit premade scripts', html);
 
-    container.onrefresh = () => {
+    
+
+    let container = tab.add('Scripts', 'View and edit premade scripts', html, () => {
         viewer.cm.display.wrapper.style.height = ( window.innerHeight - 41 ) + 'px';
-        viewer.cm.refresh()
-    };
+        viewer.cm.refresh();
+    });
 
     window.viewer = new ScriptViewer();
+
+    
 })(`<div class="main">
 <textarea id="ta-viewing-script"></textarea>
 </div>
