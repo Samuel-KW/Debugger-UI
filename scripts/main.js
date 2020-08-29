@@ -28,6 +28,39 @@ let current = 'requests',
     scripts = {};
 
 
+class Tab {
+
+    constructor (name, desc) {
+
+        this.container = document.createElement('div');
+        this.container.className = name + ' tab hidden';
+        elem.tab.appendChild(this.container);
+
+        this.title = document.createElement('a');
+        this.title.textContent = name;
+        this.title.id = 'nav-' + name;
+        this.title.title = desc;
+        elem.nav.appendChild(this.title);
+    }
+
+    hide () {
+        this.container.classList.add('hidden');
+        this.title.classList.remove('selected');
+        return this;
+    }
+
+    show () {
+        this.container.classList.remove('hidden');
+        this.title.classList.add('selected');
+        return this;
+    }
+
+
+    get html () { return this.container.innerHTML; }
+    set html (html) { this.container.innerHTML = html; }
+
+}
+
 class TabHandler {
     constructor () {
         this.selected = undefined;
@@ -36,32 +69,26 @@ class TabHandler {
 
     add (name, desc, html) {
 
-        let title = document.createElement('a');
-        title.textContent = name;
-        title.id = 'nav-' + name;
-        title.title = desc;
+        let tab = new Tab(name, desc);
+        tab.html = html;
 
-        title.addEventListener('click', () => {
-            
-        });
+        tab.title.addEventListener('click', () => this.select(name));
 
-        let container = document.createElement('div');
-        container.className = name + ' tab hidden';
-        container.innerHTML = html;
-
-        elem.nav.appendChild(title);
-        elem.tab.appendChild(container);
-
-        this.tabs[name] = {
-            title,
-            container
-        };
-
+        this.tabs[name] = tab;
         if (this.selected === undefined) this.select(name);
+
+        return this.tabs[name];
     }
 
     select (name) {
-        
+        let old = this.tabs[this.selected],
+            selected = this.tabs[name];
+
+        if (old) old.container.classList.add('hidden');
+
+        selected.classList.remove('hidden');
+
+        this.selected = name;
     }
 }
 
