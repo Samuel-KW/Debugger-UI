@@ -30,17 +30,38 @@ let current = 'requests',
 
 class TabHandler {
     constructor () {
+        this.selected = undefined;
         this.tabs = {};
     }
 
-    add (name, html) {
+    add (name, desc, html) {
+
+        let title = document.createElement('a');
+        title.textContent = name;
+        title.id = 'nav-' + name;
+        title.title = desc;
+
+        title.addEventListener('click', () => {
+            
+        });
+
         let container = document.createElement('div');
         container.className = name + ' tab hidden';
         container.innerHTML = html;
 
+        elem.nav.appendChild(title);
         elem.tab.appendChild(container);
 
-        this.tabs[name] = {};
+        this.tabs[name] = {
+            title,
+            container
+        };
+
+        if (this.selected === undefined) this.select(name);
+    }
+
+    select (name) {
+        
     }
 }
 
