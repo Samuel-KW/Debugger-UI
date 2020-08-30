@@ -11,11 +11,10 @@ const get_sid = () => ++id_index;
 // Get random ID
 const get_uid = () => Date.now() + '-' + Math.random().toString(36).substr(2, 9);
 
-
-let id_index = 0,
+let nav_height = elem.nav.getBoundingClientRect().height || 41,
+    id_index = 0,
     scripts = {};
 
-// TODO Only refresh active tab when resizing
 class Tab {
 
     constructor(name, desc) {
@@ -32,15 +31,12 @@ class Tab {
         this.title.title = desc;
         elem.nav.appendChild(this.title);
 
-        window.addEventListener('resize', () => this.refresh());
+        window.addEventListener('resize', () => { this.title.classList.contains('hidden') || this.refresh(); });
     }
 
     hide() {
         this.container.classList.add('hidden');
         this.title.classList.remove('selected');
-
-        // Refresh content
-        this.refresh();
 
         return this;
     }
@@ -60,7 +56,7 @@ class Tab {
     }
 
     get onrefresh() { return this.refreshfunc; }
-    set onrefresh(func) { this.refreshfunc = func; }
+    set onrefresh(func) { this.refreshfunc = func; func(); }
 
     get html() { return this.container.innerHTML; }
     set html(html) { this.container.innerHTML = html; }
@@ -73,13 +69,12 @@ class TabHandler {
         this.tabs = {};
     }
 
-    add(name, desc, html, onrefresh) {
+    add(name, desc, html) {
 
         if (this.tabs[name]) console.warn('Duplicate class name found:', name);
 
         let tab = new Tab(name, desc);
         tab.html = html;
-        tab.onrefresh = onrefresh;
         tab.title.addEventListener('click', () => this.select(name));
 
         this.tabs[name] = tab;
@@ -128,8 +123,8 @@ function set_theme(theme) {
         document.head.appendChild(style);
     }
 
-    editor.cm.setOption('theme', theme);
-    viewer.cm.setOption('theme', theme);
+    if (editor) editor.cm.setOption('theme', theme);
+    if (viewer) viewer.cm.setOption('theme', theme);
 }
 
 // Create accordian elements
@@ -151,7 +146,7 @@ function accordion(elem, child) {
 
 // Get saved data
 function get(key) {
-    return new Promise((resolve, reject) => {
+    return new Promise(resolve => {
 
         // If ran from chrome extension
         if (chrome && chrome.storage && chrome.storage.local) {
@@ -209,11 +204,11 @@ window.addEventListener('load', function() {
     });
 
     // Detect and load scripts
-    get('scripts').then(scripts => {
+    get('scripts').then(data => {
 
         // Make sure there is always one script
-        if (!scripts) {
-            scripts = {
+        if (!data) {
+            data = {
                 '1598326646634-6wvbxj8v6': {
                     name: 'Hello World Script',
                     desc: 'A "Hello, World!" program generally is a computer program that outputs or displays the message "Hello, World!". Such a program is very simple in most programming languages, and is often used to illustrate the basic syntax of a programming language. It is often the first program written by people learning to code.',
@@ -224,15 +219,14 @@ window.addEventListener('load', function() {
                 }
             };
 
-            set('scripts', scripts);
+            set('scripts', data);
         }
 
-        //editor.update_scripts(scripts);
-        viewer.update_scripts(scripts);
+        scripts = data;
     });
 
     // Testing scripts
-    set('scripts', scripts = {
+    /*set('scripts', scripts = {
         '1598326646634-6wvbxj8v6': {
             name: 'Andrew Gump P1',
             desc: 'Andrew Gump had always loved urban Sidney with its unkempt, ugly umbrellas. It was a place where he felt worried',
@@ -274,6 +268,7 @@ window.addEventListener('load', function() {
             active: true
         }
     });
+    */
 });
 
 // When the page is closed
