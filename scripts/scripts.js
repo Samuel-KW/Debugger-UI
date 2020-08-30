@@ -82,14 +82,17 @@ class ScriptViewer {
 
 (function (html) {
 
-    
-
-    let container = tab.add('Scripts', 'View and edit premade scripts', html, () => {
-        viewer.cm.display.wrapper.style.height = ( window.innerHeight - 41 ) + 'px';
-        viewer.cm.refresh();
-    });
+    let container = tab.add('Scripts', 'View and edit premade scripts', html);
 
     window.viewer = new ScriptViewer();
+
+    // Handle refresh
+    container.onrefresh = () => {
+        viewer.cm.display.wrapper.style.height = ( window.innerHeight - nav_height ) + 'px';
+        viewer.cm.refresh();
+    };
+
+    
 
     
 })(`<div class="main">
