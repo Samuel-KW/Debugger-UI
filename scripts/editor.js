@@ -1,6 +1,8 @@
 class ScriptEditor {
     constructor () {
 
+        this.selected = undefined;
+
         // Create editor from textarea
         this.cm = CodeMirror.fromTextArea(document.getElementById('ta-selected-script'), {
             highlightSelectionMatches: { showToken: /\w/, annotateScrollbar: true },
@@ -31,7 +33,11 @@ class ScriptEditor {
         this.cm.setValue('console.log("Hello world!");');
     }
 
-    update_scripts(scripts) {
+    select(id) {
+        
+    }
+
+    refresh_scripts(scripts) {
         let parent = document.getElementById('inp-selected-script');
 
         while (parent.firstChild)
@@ -49,27 +55,38 @@ class ScriptEditor {
         }
     }
 
-    save_script() {
+    save_script(id) {
+        if (id === undefined) return;
+
         let code = editor.cm.getValue();
 
-        // TODO Save code somewhere
+        this.update_script(id, { code });
     }
 
-    update_script(id, content='console.log(\'Hello World!\');', name='New Script', active=true) {
-        let script = {
-            updated: Date.now(),
-            script: content,
-            name: name,
-            desc: '',
-            active,
-            id,
-        };
+    update_script(id, settings={}) {
 
-        // TODO Replace saved script with this
+        // Handle creating new scripts
+        if (scripts[id] === undefined) {
+            scripts[id] = {
+                name: settings.name ?? 'Unknown Script',
+                desc: settings.desc ?? 'No description here D;',
+                author: settings.author ?? 'anonymous',
+                code: settings.code ?? '// Write your code here!\n\nconsole.log("Hello World!");',
+                active: settings.active ?? false,
+                updated: Date.now()
+            };
+        } else {
+
+            // Replace old values with new ones
+            for (let key in settings)
+                scripts[id][key] = settings[key];
+        }
+
+        save_scripts();
     }
 
-    get_script(id, callback=()=>{}) {
-        //return this.scripts[id] 
+    get_script(id) {
+        return scripts[id];
     }
 
     remove_script(id) {
