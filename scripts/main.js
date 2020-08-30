@@ -191,6 +191,10 @@ function set(key, value) {
     }
 }
 
+function save_scripts() {
+    set('scripts', scripts);
+}
+
 // Handle page load events
 window.addEventListener('load', function() {
     // Page is active
