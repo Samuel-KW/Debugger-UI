@@ -28,13 +28,19 @@ class ScriptEditor {
             indentUnit: 4,
             tabSize: 4
         });
-
-        // Set a placeholder value
-        this.cm.setValue('console.log("Hello world!");');
     }
 
     select(id) {
-        
+
+        let script = scripts[id];
+
+        document.getElementById('editor-title').textContent = script.name;
+        document.getElementById('editor-desc').textContent = script.desc;
+        document.getElementById('editor-created').textContent = new Date(Number(id.split('-')[0]) || 0);
+        document.getElementById('editor-updated').textContent = new Date(script.updated);
+        document.getElementById('edit-script-active').checked = script.active;
+
+        this.cm.setValue(script.code);
     }
 
     refresh_scripts(scripts) {
@@ -55,7 +61,7 @@ class ScriptEditor {
         }
     }
 
-    save_script(id) {
+    save_script() {
         if (id === undefined) return;
 
         let code = editor.cm.getValue();
@@ -104,7 +110,7 @@ class ScriptEditor {
 
     // Handle refreshing
     container.onrefresh = () => {
-        editor.cm.display.wrapper.style.height = ( window.innerHeight - 41 ) + 'px';
+        editor.cm.display.wrapper.style.height = ( window.innerHeight - nav_height ) + 'px';
         editor.cm.refresh();
     };
 
@@ -124,7 +130,7 @@ class ScriptEditor {
 </div>
 
 <div class="sidebar">
-<h2 class="header" class="sidebar-header">Settings</h2>
+<h2 lass="header sidebar-header">Settings</h2>
 <div class="settings">
 
     <div>
@@ -208,10 +214,10 @@ class ScriptEditor {
     </div>
 </div>
 
-<h2 class="header" class="sidebar-header">Hello World Script</h2>
-<div class="script-description s-pad">A "Hello, World!" program generally is a computer program that outputs or displays the message "Hello, World!". Such a program is very simple in most programming languages, and is often used to illustrate the basic syntax of a programming language. It is often the first program written by people learning to code.</div>
-<div class="created-date">Thu Aug 20 2020 21:22:18 GMT-0700 (Pacific Daylight Time)</div>
-<div class="updated-date">Fri Aug 21 2020 17:14:49 GMT-0700 (Pacific Daylight Time)</div>
+<h2 class="header sidebar-header" id="editor-title">Hello World Script</h2>
+<div class="script-description s-pad" id="editor-desc">A "Hello, World!" program generally is a computer program that outputs or displays the message "Hello, World!". Such a program is very simple in most programming languages, and is often used to illustrate the basic syntax of a programming language. It is often the first program written by people learning to code.</div>
+<div class="created-date" id="editor-created">Thu Aug 20 2020 21:22:18 GMT-0700 (Pacific Daylight Time)</div>
+<div class="updated-date" id="editor-updated">Fri Aug 21 2020 17:14:49 GMT-0700 (Pacific Daylight Time)</div>
 <div class="s-pad"><label for="edit-script-active">Active</label><input id="edit-script-active" type="checkbox" checked="true"></div>
 </div>`);
 
