@@ -186,8 +186,21 @@ function set(key, value) {
     }
 }
 
+// Save scripts to storage
 function save_scripts() {
     set('scripts', scripts);
+}
+
+// Mini-notifications
+function notification(message, duration=5000) {
+    let elem = document.createElement('div');
+    elem.textContent = message;
+    elem.style = 'position: fixed; left: 10px; bottom: 10px; padding: 5px; font-size: 20px; color: #fff; background-color: #000; border-radius: 3px; z-index: 2147483647; transition: all 250ms; animation: 1s ease float-up;';
+
+    document.body.appendChild(elem);
+
+    setTimeout(() => { elem.style.opacity = 0; }, duration);
+    setTimeout(() => elem.remove(), duration + 250);
 }
 
 // Handle page load events
