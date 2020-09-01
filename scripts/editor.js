@@ -44,21 +44,24 @@ class ScriptEditor {
     }
 
     refresh_scripts(scripts) {
+        
         let parent = document.getElementById('inp-selected-script');
 
         while (parent.firstChild)
             parent.removeChild(parent.lastChild);
 
-        for (let i = 0; i < scripts.length; ++i) {
-            let script = scripts[i],
+        for (let id in scripts) {
+            let script = scripts[id],
                 elem = document.createElement('option');
 
-            elem.value = script.src;
+            elem.value = id;
             elem.title = script.desc;
             elem.textContent = script.name;
 
             parent.appendChild(elem);
         }
+
+        this.select(Object.keys(scripts)[0]);
     }
 
     save_script() {
@@ -114,15 +117,22 @@ class ScriptEditor {
         editor.cm.refresh();
     };
 
-    // Set theme
+    // Set theme handler
     document.getElementById('inp-theme').addEventListener('change', function () {
         set_theme(this.value);
         set('theme', this.value);
     });
 
+    get('theme').then(theme => {
+        theme = theme ?? 'vscode-dark';
+
+        document.getElementById('inp-theme').value = theme;
+        set_theme(theme);
+    });
+
     // Set current script
     document.getElementById('inp-selected-script').addEventListener('change', function () {
-        editor.cm.setValue(`fetch('scripts/${this.value}');`);
+        editor.select(this.value);
     });
 
 })(`<div class="main">
