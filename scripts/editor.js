@@ -41,6 +41,7 @@ class ScriptEditor {
         document.getElementById('edit-script-active').checked = script.active;
 
         this.cm.setValue(script.code);
+        this.selected = id;
     }
 
     refresh_scripts(scripts) {
@@ -65,11 +66,11 @@ class ScriptEditor {
     }
 
     save_script() {
-        if (id === undefined) return;
+        if (this.selected === undefined) return;
 
         let code = editor.cm.getValue();
 
-        this.update_script(id, { code });
+        this.update_script(this.selected, { code });
     }
 
     update_script(id, settings={}) {
