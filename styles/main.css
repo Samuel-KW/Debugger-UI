@@ -87,3 +87,8 @@ body {
 .CodeMirror-vscrollbar { width: 9px; }
 .CodeMirror-gutters { left: 0px; height: 220px; }
 .CodeMirror-gutter.CodeMirror-linenumbers { width: 29px; }
+
+@keyframes float-up {
+    from { opacity: 0; bottom: -10px; }
+    to { opacity: 1; bottom: 10px; }
+}
