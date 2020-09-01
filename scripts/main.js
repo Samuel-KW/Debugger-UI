@@ -190,18 +190,11 @@ function save_scripts() {
     set('scripts', scripts);
 }
 
+// Page is active
+set('active', true);
+
 // Handle page load events
 window.addEventListener('load', function() {
-    // Page is active
-    set('active', true);
-
-    // Load theme on page load
-    get('theme').then(theme => {
-        theme = theme ?? 'vscode-dark';
-
-        document.getElementById('inp-theme').value = theme;
-        set_theme(theme);
-    });
 
     // Detect and load scripts
     get('scripts').then(data => {
@@ -223,6 +216,10 @@ window.addEventListener('load', function() {
         }
 
         scripts = data;
+
+        // Update scripts and editor tab
+        viewer.update_scripts(scripts);
+        editor.refresh_scripts(scripts);
     });
 
     // Testing scripts
