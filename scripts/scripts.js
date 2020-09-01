@@ -91,9 +91,6 @@ class ScriptViewer {
         viewer.cm.display.wrapper.style.height = ( window.innerHeight - nav_height ) + 'px';
         viewer.cm.refresh();
     };
-
-    
-
     
 })(`<div class="main">
 <textarea id="ta-viewing-script"></textarea>
