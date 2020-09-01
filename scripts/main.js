@@ -190,9 +190,6 @@ function save_scripts() {
     set('scripts', scripts);
 }
 
-// Page is active
-set('active', true);
-
 // Handle page load events
 window.addEventListener('load', function() {
 
@@ -267,6 +264,9 @@ window.addEventListener('load', function() {
     });
     */
 });
+
+// Page is active
+set('active', true);
 
 // When the page is closed
 window.onbeforeunload = () => {
