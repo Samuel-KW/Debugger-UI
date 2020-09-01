@@ -94,14 +94,6 @@ class ScriptEditor {
 
         save_scripts();
     }
-
-    get_script(id) {
-        return scripts[id];
-    }
-
-    remove_script(id) {
-        //this.scripts = this.scripts.filter(e => e.id != id);
-    }
 }
 
 (function (html) {
