@@ -1,3 +1,5 @@
+
+
 class ScriptEditor {
     constructor () {
 
@@ -39,6 +41,8 @@ class ScriptEditor {
         document.getElementById('editor-created').textContent = new Date(Number(id.split('-')[0]) || 0);
         document.getElementById('editor-updated').textContent = new Date(script.updated);
         document.getElementById('edit-script-active').checked = script.active;
+
+        document.getElementById('inp-selected-script').value = id;
 
         this.cm.setValue(script.code);
         this.selected = id;
@@ -92,6 +96,30 @@ class ScriptEditor {
                 scripts[id][key] = settings[key];
         }
 
+        save_scripts();
+    }
+
+    new_script() {
+        let id = get_uid();
+
+        // Create a new empty script
+        this.update_script(id);
+
+        // Refresh the scripts
+        this.refresh_scripts(scripts);
+
+        // Select the script
+        this.select(id);
+
+        return id;
+    }
+
+    remove_script(id) {
+        
+        // Remove the script from scripts object
+        delete scripts[id];
+
+        // Save scripts
         save_scripts();
     }
 }
