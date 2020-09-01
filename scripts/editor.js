@@ -71,6 +71,7 @@ class ScriptEditor {
 
     save_script() {
         if (this.selected === undefined) return;
+        notification('Saved', 2000);
 
         let code = editor.cm.getValue();
 
