@@ -157,6 +157,11 @@ class ScriptEditor {
         editor.select(this.value);
     });
 
+    // Create new script
+    document.getElementById('editor-new-script').addEventListener('click', () => {
+        editor.new_script();
+    });
+
 })(`<div class="main">
 <textarea id="ta-selected-script"></textarea>
 </div>
