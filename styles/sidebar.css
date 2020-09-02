@@ -87,3 +87,10 @@
 .s-pad {
     padding: 20px;
 }
+
+#editor-new-script {
+    user-select: none;
+    cursor: pointer;
+    font-size: 20px;
+    color: #eee;
+}
