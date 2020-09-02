@@ -47,7 +47,7 @@ class ScriptEditor {
         this.cm.setValue(script.code);
         this.selected = id;
     }
-
+    
     refresh_scripts(scripts) {
         
         let parent = document.getElementById('inp-selected-script');
