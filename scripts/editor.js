@@ -47,7 +47,7 @@ class ScriptEditor {
         this.cm.setValue(script.code);
         this.selected = id;
     }
-    
+
     refresh_scripts(scripts) {
         
         let parent = document.getElementById('inp-selected-script');
@@ -167,13 +167,8 @@ class ScriptEditor {
 
     <div>
         <label for="inp-selected-script">Script</label>
-        <select id="inp-selected-script">
-            <option value="moniter_eval.js" title="Log all eval related scripts">Moniter Eval</option>
-            <option value="open_svg.js" title="Ctrl + click SVGs to open in new tab">Open SVG</option>
-            <option value="socketio_debug.js" title="Enable / disable socket.io debugging">Socket.io Debugger</option>
-            <option value="paste_files_anywhere.js" title="Ctrl + v to paste instead of selecting file">Paste Anywhere</option>
-            <option value="voice_commands.js" title="Basic voice command demo">Voice Commands</option>
-        </select>
+        <select id="inp-selected-script"></select>
+        <span id="editor-new-script">+</span>
     </div>
 
     <div>
