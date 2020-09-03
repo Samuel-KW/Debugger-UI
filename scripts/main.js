@@ -208,16 +208,19 @@ function popup(title='', body='', buttons=[]) {
     
     // Popup container
     let parent = document.createElement('div');
-    parent.style = 'top: 0; left: 0; position: fixed; display: flex; align-items: center; justify-content: center; width: 100%; height: 100%;';
+    parent.style = 'z-index: 2147483647; top: 0; left: 0; position: fixed; display: flex; align-items: center; justify-content: center; width: 100%; height: 100%; background-color: rgba(0, 0, 0, 0.7);';
+
+    // Close the popup
+    const close = () => parent.remove();
 
     // Content container
     let container = document.createElement('div');
-    container.style = 'padding: 5px; font-size: 20px; color: #fff; background-color: #000; z-index: 2147483647; transition: all 250ms; animation: 1s ease float-up;';
+    container.style = 'padding: 5px; font-size: 20px; color: #fff; background-color: #000; transition: all 250ms; animation: 1s ease float-up;';
 
     // Header element
     let header = document.createElement('h2');
-    header.style = 'font-size: 24px; color: #eee; border-bottom: 1px solid grey';
-    header.textContent = 'title';
+    header.style = 'font-size: 24px; color: #eee; border-bottom: 1px solid grey; margin-bottom: 5px;';
+    header.textContent = title;
 
     // Popup content
     let content = document.createElement('span');
@@ -231,7 +234,7 @@ function popup(title='', body='', buttons=[]) {
         let btn = document.createElement('button');
         btn.textContent = options.content;
         btn.style = options.style ?? '';
-        btn.addEventListener('click', options.click);
+        btn.addEventListener('click', () => { if (typeof options.click === 'function') options.click.call(window, close); });
 
         btn_container.appendChild(btn);
     });
@@ -248,7 +251,7 @@ function popup(title='', body='', buttons=[]) {
     return parent;
 }
 
-popup('Hello World', 'This world is messed up', [ { content: 'Yes', click: console.log, style: 'border: 1px solid green;' } ]);
+popup('Hello World', 'This world is messed up', [ { content: 'Yes', click: function (close) { close(); }, style: 'border: 1px solid green;' } ]);
 
 // Handle page load events
 window.addEventListener('load', function() {
