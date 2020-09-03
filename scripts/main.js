@@ -205,20 +205,50 @@ function notification(message, duration=5000) {
 
 // Popup messages
 function popup(title='', body='', buttons=[]) {
+    
+    // Popup container
     let parent = document.createElement('div');
-    parent.style = 'position: fixed; padding: 5px; font-size: 20px; color: #fff; background-color: #000; z-index: 2147483647; transition: all 250ms; animation: 1s ease float-up;';
+    parent.style = 'top: 0; left: 0; position: fixed; display: flex; align-items: center; justify-content: center; width: 100%; height: 100%;';
 
+    // Content container
+    let container = document.createElement('div');
+    container.style = 'padding: 5px; font-size: 20px; color: #fff; background-color: #000; z-index: 2147483647; transition: all 250ms; animation: 1s ease float-up;';
+
+    // Header element
     let header = document.createElement('h2');
     header.style = 'font-size: 24px; color: #eee; border-bottom: 1px solid grey';
     header.textContent = 'title';
 
+    // Popup content
     let content = document.createElement('span');
     content.textContent = body;
 
+    // Container for button elements
+    let btn_container = document.createElement('div');
 
+    // Add button elements
+    buttons.forEach(options => {
+        let btn = document.createElement('button');
+        btn.textContent = options.content;
+        btn.style = options.style ?? '';
+        btn.addEventListener('click', options.click);
+
+        btn_container.appendChild(btn);
+    });
+
+    // Add elements to container
+    container.appendChild(header);
+    container.appendChild(content);
+    container.appendChild(btn_container);
+
+    parent.appendChild(container);
+
+    document.body.appendChild(parent);
 
     return parent;
 }
+
+popup('Hello World', 'This world is messed up', [ { content: 'Yes', click: console.log, style: 'border: 1px solid green;' } ]);
 
 // Handle page load events
 window.addEventListener('load', function() {
