@@ -89,6 +89,6 @@ body {
 .CodeMirror-gutter.CodeMirror-linenumbers { width: 29px; }
 
 @keyframes float-up {
-    from { opacity: 0; bottom: -10px; }
-    to { opacity: 1; bottom: 10px; }
+    from { opacity: 0; transform: translateY(10px); }
+    to { opacity: 1; transform: translateY(0); }
 }
