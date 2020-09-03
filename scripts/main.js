@@ -213,9 +213,17 @@ function popup(title='', body='', buttons=[]) {
     // Close the popup
     const close = () => parent.remove();
 
+    // Create exit button
+    let exit = document.createElement('span');
+    exit.style = 'float: right; cursor: pointer;';
+    exit.innerHTML = '&times;';
+
+    exit.setAttribute('aria-label', 'Close Account Info Modal Box');
+    exit.addEventListener('click', close);
+
     // Content container
     let container = document.createElement('div');
-    container.style = 'padding: 5px; font-size: 20px; color: #fff; background-color: #000; transition: all 250ms; animation: 1s ease float-up;';
+    container.style = 'padding: 5px; font-size: 20px; color: #fff; background-color: #000; animation: 750ms ease float-up;';
 
     // Header element
     let header = document.createElement('h2');
@@ -240,6 +248,7 @@ function popup(title='', body='', buttons=[]) {
     });
 
     // Add elements to container
+    container.appendChild(exit);
     container.appendChild(header);
     container.appendChild(content);
     container.appendChild(btn_container);
