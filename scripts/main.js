@@ -204,10 +204,18 @@ function notification(message, duration=5000) {
 }
 
 // Popup messages
-function popup(title='', content='', buttons=[]) {
+function popup(title='', body='', buttons=[]) {
     let parent = document.createElement('div');
+    parent.style = 'position: fixed; padding: 5px; font-size: 20px; color: #fff; background-color: #000; z-index: 2147483647; transition: all 250ms; animation: 1s ease float-up;';
 
-    let header = document.createElement('div');
+    let header = document.createElement('h2');
+    header.style = 'font-size: 24px; color: #eee; border-bottom: 1px solid grey';
+    header.textContent = 'title';
+
+    let content = document.createElement('span');
+    content.textContent = body;
+
+
 
     return parent;
 }
