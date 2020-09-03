@@ -215,7 +215,7 @@ function popup(title='', body='', buttons=[]) {
 
     // Create exit button
     let exit = document.createElement('span');
-    exit.style = 'float: right; cursor: pointer;';
+    exit.style = 'float: right; cursor: pointer; color: #ababab';
     exit.innerHTML = '&times;';
 
     exit.setAttribute('aria-label', 'Close Account Info Modal Box');
@@ -223,11 +223,11 @@ function popup(title='', body='', buttons=[]) {
 
     // Content container
     let container = document.createElement('div');
-    container.style = 'padding: 5px; font-size: 20px; color: #fff; background-color: #000; animation: 750ms ease float-up;';
+    container.style = 'text-align: center; padding: 5px; font-size: 20px; color: #fff; background-color: #000; animation: 750ms ease float-up; max-width: 50%; max-height: 50%;';
 
     // Header element
     let header = document.createElement('h2');
-    header.style = 'font-size: 24px; color: #eee; border-bottom: 1px solid grey; margin-bottom: 5px;';
+    header.style = 'text-align: center; font-size: 24px; color: #d1d1d1; padding-bottom: 5px; border-bottom: 1px solid #0075FF; margin-bottom: 5px;';
     header.textContent = title;
 
     // Popup content
@@ -236,12 +236,13 @@ function popup(title='', body='', buttons=[]) {
 
     // Container for button elements
     let btn_container = document.createElement('div');
+    btn_container.style = 'margin: 15px 0; display: flex; align-items: center; justify-content: center;';
 
     // Add button elements
     buttons.forEach(options => {
         let btn = document.createElement('button');
         btn.textContent = options.content;
-        btn.style = options.style ?? '';
+        btn.style = 'margin: 0 5px; width: 50px; height: 30px; border: none; outline: none; cursor: pointer; border-radius: 5px; background-color: #575757; color: #eee;'+ (options.style ?? '');
         btn.addEventListener('click', () => { if (typeof options.click === 'function') options.click.call(window, close); });
 
         btn_container.appendChild(btn);
@@ -259,8 +260,6 @@ function popup(title='', body='', buttons=[]) {
 
     return parent;
 }
-
-popup('Hello World', 'This world is messed up', [ { content: 'Yes', click: function (close) { close(); }, style: 'border: 1px solid green;' } ]);
 
 // Handle page load events
 window.addEventListener('load', function() {
