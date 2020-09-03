@@ -116,12 +116,19 @@ class ScriptEditor {
     }
 
     remove_script(id) {
-        
-        // Remove the script from scripts object
-        delete scripts[id];
+        popup('Delete Script', 'Are you sure you want to permanantly delete this script?', [ 
+            { style: 'border: 1px solid green;', content: 'Yes', click: function (close) {
 
-        // Save scripts
-        save_scripts();
+                // Remove the script from scripts object
+                delete scripts[id];
+
+                // Save scripts
+                save_scripts();
+
+                close(); 
+            }},
+            { style: 'border: 1px solid red;', content: 'No', click: function (close) { close(); }
+        }]);
     }
 }
 
