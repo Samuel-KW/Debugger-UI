@@ -203,6 +203,15 @@ function notification(message, duration=5000) {
     setTimeout(() => elem.remove(), duration + 250);
 }
 
+// Popup messages
+function popup(title='', content='', buttons=[]) {
+    let parent = document.createElement('div');
+
+    let header = document.createElement('div');
+
+    return parent;
+}
+
 // Handle page load events
 window.addEventListener('load', function() {
 
