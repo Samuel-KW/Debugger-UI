@@ -191,6 +191,11 @@ class ScriptEditor {
     // Enable / disable script
     document.getElementById('edit-script-active').addEventListener('change', function () {
         
+        let script = scripts[editor.selected];
+        if (!script) return;
+
+        script.active = this.checked;
+        save_scripts();
     });
 
 })(`<div class="main">
