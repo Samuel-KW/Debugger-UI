@@ -35,6 +35,7 @@ class ScriptEditor {
     select(id) {
 
         let script = scripts[id];
+        if (!script) return;
 
         document.getElementById('editor-title').textContent = script.name;
         document.getElementById('editor-desc').textContent = script.desc;
@@ -116,19 +117,12 @@ class ScriptEditor {
     }
 
     remove_script(id) {
-        popup('Delete Script', 'Are you sure you want to permanantly delete this script?', [ 
-            { style: 'border: 1px solid green;', content: 'Yes', click: function (close) {
 
-                // Remove the script from scripts object
-                delete scripts[id];
+        // Remove the script from scripts object
+        delete scripts[id];
 
-                // Save scripts
-                save_scripts();
-
-                close(); 
-            }},
-            { style: 'border: 1px solid red;', content: 'No', click: function (close) { close(); }
-        }]);
+        // Save scripts
+        save_scripts();
     }
 }
 
@@ -167,6 +161,31 @@ class ScriptEditor {
     // Create new script
     document.getElementById('editor-new-script').addEventListener('click', () => {
         editor.new_script();
+    });
+
+    // Delete script
+    document.getElementById('delete-script').addEventListener('click', () => {
+
+        let script = scripts[editor.selected];
+        if (!script) return;
+
+        popup('Delete Script', 'Are you sure you want to permanantly delete the script: ' + script.name, [{
+                style: 'border: 1px solid green;',
+                content: 'Yes',
+                click: close => {
+
+                    editor.remove_script(editor.selected);
+                    editor.refresh_scripts(scripts);
+
+                    close(); 
+                }
+            },
+            {
+                style: 'border: 1px solid red;',
+                content: 'No',
+                click: close => close()
+            }
+        ]);
     });
 
 })(`<div class="main">
@@ -258,6 +277,7 @@ class ScriptEditor {
 <div class="created-date" id="editor-created">Thu Aug 20 2020 21:22:18 GMT-0700 (Pacific Daylight Time)</div>
 <div class="updated-date" id="editor-updated">Fri Aug 21 2020 17:14:49 GMT-0700 (Pacific Daylight Time)</div>
 <div class="s-pad"><label for="edit-script-active">Active</label><input id="edit-script-active" type="checkbox" checked="true"></div>
+<div class="s-pad"><button id="delete-script">Delete</button></div>
 </div>`);
 
 
