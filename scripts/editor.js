@@ -188,6 +188,11 @@ class ScriptEditor {
         ]);
     });
 
+    // Enable / disable script
+    document.getElementById('edit-script-active').addEventListener('change', function () {
+        
+    });
+
 })(`<div class="main">
 <textarea id="ta-selected-script"></textarea>
 </div>
