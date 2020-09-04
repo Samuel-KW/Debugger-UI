@@ -85,7 +85,7 @@ class ScriptEditor {
         if (scripts[id] === undefined) {
             scripts[id] = {
                 name: settings.name ?? 'Unknown Script',
-                desc: settings.desc ?? 'No description here D;',
+                desc: settings.desc ?? 'No description here D:',
                 author: settings.author ?? 'anonymous',
                 code: settings.code ?? '// Write your code here!\n\nconsole.log("Hello World!");',
                 active: settings.active ?? false,
