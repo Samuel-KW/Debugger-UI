@@ -1,0 +1,3 @@
+let rtc = ['RTCCertificate', 'RTCDTMFSender', 'RTCDTMFToneChangeEvent', 'RTCDataChannel', 'RTCDataChannelEvent', 'RTCDtlsTransport', 'RTCError', 'RTCErrorEvent', 'RTCIceCandidate', 'RTCIceTransport', 'RTCPeerConnection', 'RTCPeerConnectionIceErrorEvent', 'RTCPeerConnectionIceEvent', 'RTCRtpReceiver', 'RTCRtpSender', 'RTCRtpTransceiver', 'RTCSctpTransport', 'RTCSessionDescription', 'RTCSessionDescription', 'RTCStatsReport', 'RTCTrackEvent', 'webkitRTCPeerConnection'];
+
+rtc.map(e => delete window[e]);
