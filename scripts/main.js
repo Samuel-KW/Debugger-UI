@@ -227,7 +227,7 @@ function popup(title='', body='', buttons=[]) {
 
     // Header element
     let header = document.createElement('h2');
-    header.style = 'padding: 5px; background-color: #303030; text-align: center; font-size: 24px; color: #d1d1d1;';
+    header.style = 'padding: 5px; background-color: #303030; text-align: center; font-size: 24px; color: #d1d1d1; margin-bottom: 20px;';
     header.textContent = title;
 
     // Popup content
