@@ -20,6 +20,7 @@
 }
 
 #nav a.selected {
+    border-top: 2px solid #0075FF;
     background-color: #424242;
     color: #fbfbfb;
 }
