@@ -169,7 +169,7 @@ class ScriptEditor {
         let script = scripts[editor.selected];
         if (!script) return;
 
-        popup('Delete Script', 'Are you sure you want to permanantly delete the script: ' + script.name, [{
+        popup('Delete Script', 'Are you sure you want to permanantly delete the script:\r\n' + script.name, [{
                 style: 'border: 1px solid green;',
                 content: 'Yes',
                 click: close => {
