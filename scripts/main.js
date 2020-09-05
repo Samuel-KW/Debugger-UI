@@ -208,30 +208,31 @@ function popup(title='', body='', buttons=[]) {
     
     // Popup container
     let parent = document.createElement('div');
-    parent.style = 'z-index: 2147483647; top: 0; left: 0; position: fixed; display: flex; align-items: center; justify-content: center; width: 100%; height: 100%; background-color: rgba(0, 0, 0, 0.7);';
+    parent.style = 'z-index: 2147483647; top: 0; left: 0; position: fixed; display: flex; align-items: center; justify-content: center; width: 100%; height: 100%; background-color: rgba(61, 61, 61, 0.6);';
+
+    // Content container
+    let container = document.createElement('div');
+    container.style = 'background-color: #282828; box-shadow: 0 0 25px rgba(0, 0, 0, 0.7); text-align: center; font-size: 20px; color: #fff; animation: 750ms ease float-up; max-width: 50%; max-height: 50%;';
 
     // Close the popup
     const close = () => parent.remove();
 
     // Create exit button
     let exit = document.createElement('span');
-    exit.style = 'float: right; cursor: pointer; color: #ababab';
+    exit.style = 'padding: 5px; float: right; cursor: pointer; color: #ababab;';
     exit.innerHTML = '&times;';
 
     exit.setAttribute('aria-label', 'Close Account Info Modal Box');
     exit.addEventListener('click', close);
 
-    // Content container
-    let container = document.createElement('div');
-    container.style = 'text-align: center; padding: 5px; font-size: 20px; color: #fff; background-color: #000; animation: 750ms ease float-up; max-width: 50%; max-height: 50%;';
-
     // Header element
     let header = document.createElement('h2');
-    header.style = 'text-align: center; font-size: 24px; color: #d1d1d1; padding-bottom: 5px; border-bottom: 1px solid #0075FF; margin-bottom: 5px;';
+    header.style = 'padding: 5px; background-color: #303030; text-align: center; font-size: 24px; color: #d1d1d1;';
     header.textContent = title;
 
     // Popup content
     let content = document.createElement('span');
+    content.style = 'padding: 15px; white-space: pre-wrap;';
     content.textContent = body;
 
     // Container for button elements
