@@ -212,14 +212,14 @@ function popup(title='', body='', buttons=[]) {
 
     // Content container
     let container = document.createElement('div');
-    container.style = 'background-color: #282828; box-shadow: 0 0 25px rgba(0, 0, 0, 0.7); text-align: center; font-size: 20px; color: #fff; animation: 750ms ease float-up; max-width: 50%; max-height: 50%;';
+    container.style = 'border-radius: 3px; overflow: hidden; display: flex; flex-direction: column; justify-content: space-between; min-height: 40%; background-color: #282828; box-shadow: 0 0 25px rgba(0, 0, 0, 0.7); text-align: center; font-size: 20px; color: #fff; animation: 750ms ease float-up; max-width: 50%; max-height: 50%;';
 
     // Close the popup
     const close = () => parent.remove();
 
     // Create exit button
     let exit = document.createElement('span');
-    exit.style = 'padding: 5px; float: right; cursor: pointer; color: #ababab;';
+    exit.style = 'position: absolute; padding: 15px; cursor: pointer; color: #ababab; user-select: none; margin-left: 5px;';
     exit.innerHTML = '&times;';
 
     exit.setAttribute('aria-label', 'Close Account Info Modal Box');
@@ -227,12 +227,12 @@ function popup(title='', body='', buttons=[]) {
 
     // Header element
     let header = document.createElement('h2');
-    header.style = 'padding: 5px; background-color: #303030; text-align: center; font-size: 24px; color: #d1d1d1; margin-bottom: 20px;';
+    header.style = 'padding: 15px; background-color: #303030; text-align: center; font-size: 24px; color: #d1d1d1; margin-bottom: 20px;';
     header.textContent = title;
 
     // Popup content
     let content = document.createElement('span');
-    content.style = 'padding: 15px; white-space: pre-wrap;';
+    content.style = 'padding: 15px;';
     content.textContent = body;
 
     // Container for button elements
