@@ -1,19 +1,138 @@
-[
-    { "title": "Audio Device Spoofer", "desc": "Spoof audio device", "file": "audio.js" },
-    { "title": "Moniter Base64", "desc": "Log base64 operations", "file": "base64.js" },
-    { "title": "Moniter Blobs", "desc": "Lob blob based operations", "file": "blobs.js" },
-    { "title": "Bypass Anti-Leave", "desc": "*Attempts* to prevent websites from detecting when the user leaves the page", "file": "bypass_anti_leave.js" },
-    { "title": "Canvas Aimbot", "desc": "POC canvas aimbot", "file": "canvas_aimbot.js" },
-    { "title": "Canvas Colorpicker", "desc": "Find RGB colors from canvas elements", "file": "colorpicker.js" },
-    { "title": "Disable WebRTC", "desc": "Force websites to use other methods for streaming", "file": "disable_webrtc.js" },
-    { "title": "Moniter Event Listeners", "desc": "View, edit, remove event listneners similar to getEventListeners", "file": "events.js" },
-    { "title": "Gimkit Bot", "desc": "1O0% uNpAtChAbLE gImKiT hAcK", "file": "gimkit.js" },
-    { "title": "Moniter JSONs", "desc": "Log JSON based operations", "file": "json.js" },
-    { "title": "Moniter Arrays", "desc": "Log array based operations", "file": "moniter_arrays.js" },
-    { "title": "Moniter Evaluations", "desc": "Log different methods of evaluating code", "file": "moniter_eval.js" },
-    { "title": "Moniter innerHTML", "desc": "Log settings the innerHTML of elements", "file": "moniter_innerHTML.js" },
-    { "title": "Open SVGs in New Tab", "desc": "Ctrl+click SVG images to open in a new tab", "file": "open_svg.js" },
-    { "title": "Paste Anywhere", "desc": "Ctrl+v to paste clipboard contents into any file input", "file": "paste_files.js" },
-    { "title": "SocketIO Debugger", "desc": "Enable / Disable socket.io debugger", "file": "socketio_debug.js" },
-    { "title": "Voice Commands", "desc": "Basic voice commands using the built-in Chrome API <3", "file": "voicecommands.js"}
-]
+{
+    "1599367504557-8f0sohrlm": {
+        "active": false,
+        "author": "Samuel Walls",
+        "desc": "Spoof audio device",
+        "name": "Audio Device Spoofer",
+        "src": "audio.js",
+        "updated": 1599367504557
+    },
+    "1599367504557-6su2bvw1t": {
+        "active": false,
+        "author": "Samuel Walls",
+        "desc": "Log base64 operations",
+        "name": "Moniter Base64",
+        "src": "base64.js",
+        "updated": 1599367504557
+    },
+    "1599367504557-2layltfzk": {
+        "active": false,
+        "author": "Samuel Walls",
+        "desc": "Log blob based operations",
+        "name": "Moniter Blobs",
+        "src": "blobs.js",
+        "updated": 1599367504557
+    },
+    "1599367504557-z2ew9zo4v": {
+        "active": false,
+        "author": "Samuel Walls",
+        "desc": "*Attempts* to prevent websites from detecting when the user leaves the page",
+        "name": "Bypass Anti-Leave",
+        "src": "bypass_anti_leave.js",
+        "updated": 1599367504557
+    },
+    "1599367504557-hn4zbf2de": {
+        "active": false,
+        "author": "Samuel Walls",
+        "desc": "POC canvas aimbot",
+        "name": "Canvas Aimbot",
+        "src": "canvas_aimbot.js",
+        "updated": 1599367504557
+    },
+    "1599367504557-sy8gblbue": {
+        "active": false,
+        "author": "Samuel Walls",
+        "desc": "Find RGB colors from canvas elements",
+        "name": "Canvas Colorpicker",
+        "src": "colorpicker.js",
+        "updated": 1599367504557
+    },
+    "1599367504557-ytzdmyhz6": {
+        "active": false,
+        "author": "Samuel Walls",
+        "desc": "Force websites to use other methods for streaming",
+        "name": "Disable WebRTC",
+        "src": "disable_webrtc.js",
+        "updated": 1599367504557
+    },
+    "1599367504557-q9wijy5a7": {
+        "active": false,
+        "author": "Samuel Walls",
+        "desc": "View, edit, remove event listneners similar to getEventListeners",
+        "name": "Moniter Event Listeners",
+        "src": "events.js",
+        "updated": 1599367504557
+    },
+    "1599367504557-lldhvkz5d": {
+        "active": false,
+        "author": "Samuel Walls",
+        "desc": "1O0% uNpAtChAbLE gImKiT hAcK",
+        "name": "Gimkit Bot",
+        "src": "gimkit.js",
+        "updated": 1599367504557
+    },
+    "1599367504557-4pbtba9hq": {
+        "active": false,
+        "author": "Samuel Walls",
+        "desc": "Log JSON based operations",
+        "name": "Moniter JSONs",
+        "src": "json.js",
+        "updated": 1599367504557
+    },
+    "1599367504557-t4jte0yoh": {
+        "active": false,
+        "author": "Samuel Walls",
+        "desc": "Log array based operations",
+        "name": "Moniter Arrays",
+        "src": "moniter_arrays.js",
+        "updated": 1599367504557
+    },
+    "1599367504557-7jna8u79q": {
+        "active": false,
+        "author": "Samuel Walls",
+        "desc": "Log different methods of evaluating code",
+        "name": "Moniter Evaluations",
+        "src": "moniter_eval.js",
+        "updated": 1599367504557
+    },
+    "1599367504557-7iexmvjal": {
+        "active": false,
+        "author": "Samuel Walls",
+        "desc": "Log settings the innerHTML of elements",
+        "name": "Moniter innerHTML",
+        "src": "moniter_innerHTML.js",
+        "updated": 1599367504557
+    },
+    "1599367504557-qvz79qrm9": {
+        "active": false,
+        "author": "Samuel Walls",
+        "desc": "Ctrl+click SVG images to open in a new tab",
+        "name": "Open SVGs in New Tab",
+        "src": "open_svg.js",
+        "updated": 1599367504557
+    },
+    "1599367504557-ie5ahhj4t": {
+        "active": false,
+        "author": "Samuel Walls",
+        "desc": "Ctrl+v to paste clipboard contents into any file input",
+        "name": "Paste Anywhere",
+        "src": "paste_files.js",
+        "updated": 1599367504557
+    },
+    "1599367504557-kip9przqm": {
+        "active": false,
+        "author": "Samuel Walls",
+        "desc": "Enable / Disable socket.io debugger",
+        "name": "SocketIO Debugger",
+        "src": "socketio_debug.js",
+        "updated": 1599367504557
+    },
+    "1599367504557-w37xt7xll": {
+        "active": false,
+        "author": "Samuel Walls",
+        "desc": "Basic voice commands using the built-in Chrome API <3",
+        "name": "Voice Commands",
+        "src": "voicecommands.js",
+        "updated": 1599367504557
+    }
+}
