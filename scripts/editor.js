@@ -98,6 +98,10 @@ class ScriptEditor {
                 scripts[id][key] = settings[key];
         }
 
+        // Update scripts and editor tab
+        viewer.update_scripts(scripts);
+        this.refresh_scripts(scripts);
+
         save_scripts();
     }
 
@@ -107,7 +111,8 @@ class ScriptEditor {
         // Create a new empty script
         this.update_script(id);
 
-        // Refresh the scripts
+        // Update scripts and editor tab
+        viewer.update_scripts(scripts);
         this.refresh_scripts(scripts);
 
         // Select the script
@@ -120,6 +125,10 @@ class ScriptEditor {
 
         // Remove the script from scripts object
         delete scripts[id];
+
+        // Update scripts and editor tab
+        viewer.update_scripts(scripts);
+        this.refresh_scripts(scripts);
 
         // Save scripts
         save_scripts();
@@ -175,7 +184,6 @@ class ScriptEditor {
                 click: close => {
 
                     editor.remove_script(editor.selected);
-                    editor.refresh_scripts(scripts);
 
                     close(); 
                 }
