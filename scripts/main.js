@@ -262,6 +262,15 @@ function popup(title='', body='', buttons=[]) {
     return parent;
 }
 
+function load_libs() {
+
+    // Fetch default scripts
+    fetch('libraries/files.json').then(e => e.json()).then(json => {
+
+
+    });
+}
+
 // Handle page load events
 window.addEventListener('load', function() {
 
