@@ -271,29 +271,34 @@ function load_libs() {
     });
 }
 
+// Reset settings
+function reset_settings () {
+    scripts = {
+        '1598326646634-6wvbxj8v6': {
+            name: 'Hello World Script',
+            desc: 'A "Hello, World!" program generally is a computer program that outputs or displays the message "Hello, World!". Such a program is very simple in most programming languages, and is often used to illustrate the basic syntax of a programming language. It is often the first program written by people learning to code.',
+            author: 'Samuel Walls',
+            updated: 1598326712028,
+            code: '// Hello World!\n\nconsole.log("Hello World!");',
+            active: false
+        }
+    };
+
+    set('active', true);
+    set('theme', 'vscode-dark');
+    set('scripts', scripts);
+}
+
 // Handle page load events
 window.addEventListener('load', function() {
 
     // Detect and load scripts
     get('scripts').then(data => {
 
-        // Make sure there is always one script
-        if (!data) {
-            data = {
-                '1598326646634-6wvbxj8v6': {
-                    name: 'Hello World Script',
-                    desc: 'A "Hello, World!" program generally is a computer program that outputs or displays the message "Hello, World!". Such a program is very simple in most programming languages, and is often used to illustrate the basic syntax of a programming language. It is often the first program written by people learning to code.',
-                    author: 'Samuel Walls',
-                    updated: 1598326712028,
-                    code: '// Hello World!\n\nconsole.log("Hello World!");',
-                    active: false
-                }
-            };
-
-            set('scripts', data);
-        }
-
         scripts = data;
+
+        // Make sure there is always one script
+        if (!data) reset_settings();
 
         // Update scripts and editor tab
         viewer.update_scripts(scripts);
