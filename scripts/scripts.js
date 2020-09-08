@@ -70,6 +70,8 @@ class ScriptViewer {
         
         document.querySelector('.Scripts .header').textContent = script.title;
         document.querySelector('.Scripts .script-description').textContent = script.desc;
+        document.querySelector('.Scripts .created-date').textContent = new Date(Number(id.split('-')[0]) || 0);
+        document.querySelector('.Scripts .updated-date').textContent = new Date(script.updated);
 
         // Set value of viewer
         this.cm.setValue(script.code);
