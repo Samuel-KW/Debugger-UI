@@ -15,7 +15,6 @@ class ScriptViewer {
                 'F11': cm => cm.setOption('fullScreen', !cm.getOption('fullScreen')),
                 'Alt-F': 'findPersistent'
             },
-            autoCloseBrackets: true,
             styleActiveLine: true,
             indentWithTabs: false,
             theme: 'vscode-dark',
@@ -23,14 +22,10 @@ class ScriptViewer {
             lineWrapping: true,
             mode: 'javascript',
             lineNumbers: true,
-            spellcheck: true,
             foldGutter: true,
             indentUnit: 4,
             tabSize: 4
         });
-
-        // Set a placeholder value
-        this.cm.setValue('console.log("Pre-made script goes here");');
     }
 
     update_scripts(scripts) {
@@ -73,6 +68,9 @@ class ScriptViewer {
         // Add new class
         selected.classList.add('selected');
         
+        document.querySelector('.Scripts .header').textContent = script.title;
+        document.querySelector('.Scripts .script-description').textContent = script.desc;
+
         // Set value of viewer
         this.cm.setValue(script.code);
 
@@ -83,7 +81,7 @@ class ScriptViewer {
 (function (html) {
 
     let container = tab.add('Scripts', 'View and edit premade scripts', html);
-
+    
     window.viewer = new ScriptViewer();
 
     // Handle refresh
