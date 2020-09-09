@@ -266,12 +266,39 @@ function popup(title='', body='', buttons=[]) {
     return parent;
 }
 
+// Load library scripts
 function load_libs() {
 
     // Fetch default scripts
     fetch('libraries/files.json').then(e => e.json()).then(json => {
 
+        let requests = [];
+    
+        // Create an array of fetch requests to pass into Promise.all
+        for (let id in json) {
+    
+            let script = json[id];
+    
+            requests.push(fetch('libraries/' + script.src)
+                .then(e => e.text())
+                .then(e => {
+                    delete script.src;
+                    script.code = e;
+    
+                    return script;
+                }));
+    
+        }
+    
+        // Wait until all requests have finished
+        Promise.all(requests).then(json => {
 
+            // Merge scripts
+            for (let id in json)
+                scripts[id] = json[id];
+
+            save_scripts();
+        });
     });
 }
 
