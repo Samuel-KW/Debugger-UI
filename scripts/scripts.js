@@ -93,6 +93,16 @@ class ScriptViewer {
         viewer.cm.refresh();
     };
     
+    // Enable / disable script
+    document.getElementById('view-script-active').addEventListener('change', function () {
+        
+        let script = scripts[viewer.selected];
+        if (!script) return;
+
+        script.active = this.checked;
+        save_scripts();
+    });
+
 })(`<div class="main">
 <textarea id="ta-viewing-script"></textarea>
 </div>
