@@ -283,8 +283,10 @@ function load_libs() {
                 .then(e => e.text())
                 .then(e => {
                     delete script.src;
+
                     script.code = e;
-    
+                    script.id = id;
+
                     return script;
                 }));
     
@@ -294,8 +296,12 @@ function load_libs() {
         Promise.all(requests).then(json => {
 
             // Merge scripts
-            for (let id in json)
-                scripts[id] = json[id];
+            for (let i = 0; i < json.length; ++i) {
+                let id = json[i].id;
+
+                scripts[id] = json[i];
+                delete scripts[id].id;
+            }
 
             save_scripts();
         });
