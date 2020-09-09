@@ -189,6 +189,10 @@ function set(key, value) {
 // Save scripts to storage
 function save_scripts() {
     set('scripts', scripts);
+
+    // Update scripts and editor tab
+    viewer.update_scripts(scripts);
+    editor.refresh_scripts(scripts);
 }
 
 // Mini-notifications
