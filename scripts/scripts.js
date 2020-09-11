@@ -52,8 +52,11 @@ class ScriptViewer {
             parent.appendChild(elem);
         }
 
-        let selected = parent.firstChild;
-        if (selected) this.select_script(selected);
+        let selected = parent.firstChild,
+            prev = parent.querySelector(`div[id="${this.selected}"]`);
+
+        if (prev) this.select_script(prev);
+        else if (selected) this.select_script(selected);
     }
 
     select_script(selected) {
