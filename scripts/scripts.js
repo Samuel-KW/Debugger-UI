@@ -71,7 +71,7 @@ class ScriptViewer {
         // Add new class
         selected.classList.add('selected');
         
-        document.querySelector('.Scripts .header').textContent = script.title;
+        document.querySelector('.Scripts .script-name').textContent = script.name;
         document.querySelector('.Scripts .script-description').textContent = script.desc;
         document.querySelector('.Scripts .created-date').textContent = new Date(Number(id.split('-')[0]) || 0);
         document.querySelector('.Scripts .updated-date').textContent = new Date(script.updated);
@@ -111,7 +111,7 @@ class ScriptViewer {
 </div>
 
 <div class="sidebar">
-<h2 class="header" class="sidebar-header">Scripts</h2>
+<h2 class="header sidebar-header">Scripts</h2>
 <div class="settings" id="script-container">
 
     <div class="script selected"><span>moniter_eval.js</span></div>
@@ -121,7 +121,7 @@ class ScriptViewer {
     <div class="script"><span>voice_commands.js</span></div>
 </div>
 
-<h2 class="header" class="sidebar-header">Insane Script Helper</h2>
+<h2 class="header sidebar-header script-name">Insane Script Helper</h2>
 <div class="script-description s-pad">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nullam laoreet rutrum urna at lobortis. Cras ut est at risus vulputate facilisis interdum in nulla. Sed ut bibendum orci. Sed lorem dui, ultricies non libero eleifend, vestibulum sodales nulla. Nullam at mi id lacus consequat finibus quis eget urna. Nulla urna orci, sodales at scelerisque non, aliquet at justo. Morbi posuere tellus eu erat ornare fermentum. Vivamus rutrum justo pellentesque ante venenatis, nec molestie lorem pulvinar. In vitae libero non tortor malesuada feugiat. Mauris in dolor eget nunc porta tempus eu sed sem. Pellentesque habitant morbi tristique senectus et netus et malesuada fames ac turpis egestas. Aliquam a risus at nisl ultricies pellentesque eu sed ante.</div>
 <div class="created-date">Thu Aug 20 2020 21:22:18 GMT-0700 (Pacific Daylight Time)</div>
 <div class="updated-date">Fri Aug 21 2020 17:14:49 GMT-0700 (Pacific Daylight Time)</div>
