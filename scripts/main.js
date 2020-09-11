@@ -324,6 +324,13 @@ function reset_settings () {
     set('active', true);
     set('theme', 'vscode-dark');
     set('scripts', scripts);
+
+    set('filter_regex', '');
+    set('catch_regex', '(?!)');
+    set('hooking_requests', true);
+    set('hooking_fetch', true);
+    set('logging_requests', true);
+    set('catching_all', false);
 }
 
 // Handle page load events
