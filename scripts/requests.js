@@ -51,6 +51,15 @@ class URLHandler {
         this.container.remove();
         this.header.remove();
     }
+
+    save_settings() {
+        let filter_re = document.getElementById('inp-filterregex'),
+            catch_re = document.getElementById('inp-catchregex'),
+            hook_fetch = document.getElementById('inp-hookfetch'),
+            logging = document.getElementById('inp-logging'),
+            catch_all = document.getElementById('inp-catchall');
+
+    }
 }
 
 (function (html) {
