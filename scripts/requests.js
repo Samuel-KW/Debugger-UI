@@ -56,12 +56,14 @@ class URLHandler {
 function save_request_settings() {
     let filter_re = document.getElementById('inp-filterregex'),
         catch_re = document.getElementById('inp-catchregex'),
+        hook_xhr = document.getElementById('inp-hookrequests'),
         hook_fetch = document.getElementById('inp-hookfetch'),
         logging = document.getElementById('inp-logging'),
         catch_all = document.getElementById('inp-catchall');
 
     set('filter_regex', filter_re.value);
     set('catch_regex', catch_re.value);
+    set('hooking_requests', hook_xhr.checked);
     set('hooking_fetch', hook_fetch.checked);
     set('logging_requests', logging.checked);
     set('catching_all', catch_all.checked);
@@ -71,15 +73,29 @@ function save_request_settings() {
 
     let container = tab.add('Requests', 'View and modify outgoing requests', html);
 
+    let filter_re = document.getElementById('inp-filterregex'),
+        catch_re = document.getElementById('inp-catchregex'),
+        hook_xhr = document.getElementById('inp-hookrequests'),
+        hook_fetch = document.getElementById('inp-hookfetch'),
+        logging = document.getElementById('inp-logging'),
+        catch_all = document.getElementById('inp-catchall');
 
     elem.requests = document.getElementById('request-container');
 
+    get('filter_regex').then(value => filter_re.value = value);
+    get('catch_regex').then(value => catch_re.value = value);
+    get('hooking_requests').then(value => hook_xhr.checked = value);
+    get('hooking_fetch').then(value => hook_fetch.checked = value);
+    get('logging_requests').then(value => logging.checked = value);
+    get('catching_all').then(value => catch_all.checked = value);
+
     // Add listeners
-    document.getElementById('inp-filterregex').addEventListener('change', save_request_settings);
-    document.getElementById('inp-catchregex').addEventListener('change', save_request_settings);
-    document.getElementById('inp-hookfetch').addEventListener('change', save_request_settings);
-    document.getElementById('inp-logging').addEventListener('change', save_request_settings);
-    document.getElementById('inp-catchall').addEventListener('change', save_request_settings);
+    filter_re.addEventListener('change', save_request_settings);
+    catch_re.addEventListener('change', save_request_settings);
+    hook_xhr.addEventListener('change', save_request_settings);
+    hook_fetch.addEventListener('change', save_request_settings);
+    logging.addEventListener('change', save_request_settings);
+    catch_all.addEventListener('change', save_request_settings);
 
     // Demo content code
     let url = new URLHandler('https://www.youtube.com/watch?v=1yQGkVhO6mQ');
