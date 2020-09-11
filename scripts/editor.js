@@ -67,7 +67,10 @@ class ScriptEditor {
             parent.appendChild(elem);
         }
 
-        this.select(Object.keys(scripts)[0]);
+        let selected = Object.keys(scripts)[0];
+
+        if (this.selected) this.select(this.selected);
+        else if (selected) this.select(selected);
     }
 
     save_script() {
