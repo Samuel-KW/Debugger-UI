@@ -51,20 +51,20 @@ class URLHandler {
         this.container.remove();
         this.header.remove();
     }
+}
 
-    save_settings() {
-        let filter_re = document.getElementById('inp-filterregex'),
-            catch_re = document.getElementById('inp-catchregex'),
-            hook_fetch = document.getElementById('inp-hookfetch'),
-            logging = document.getElementById('inp-logging'),
-            catch_all = document.getElementById('inp-catchall');
+function save_request_settings() {
+    let filter_re = document.getElementById('inp-filterregex'),
+        catch_re = document.getElementById('inp-catchregex'),
+        hook_fetch = document.getElementById('inp-hookfetch'),
+        logging = document.getElementById('inp-logging'),
+        catch_all = document.getElementById('inp-catchall');
 
-        set('filter_regex', filter_re.value);
-        set('catch_regex', catch_re.value);
-        set('hooking_fetch', hook_fetch.checked);
-        set('logging_requests', logging.checked);
-        set('catching_all', catch_all.checked);
-    }
+    set('filter_regex', filter_re.value);
+    set('catch_regex', catch_re.value);
+    set('hooking_fetch', hook_fetch.checked);
+    set('logging_requests', logging.checked);
+    set('catching_all', catch_all.checked);
 }
 
 (function (html) {
@@ -73,6 +73,13 @@ class URLHandler {
 
 
     elem.requests = document.getElementById('request-container');
+
+    // Add listeners
+    document.getElementById('inp-filterregex').addEventListener('change', save_request_settings);
+    document.getElementById('inp-catchregex').addEventListener('change', save_request_settings);
+    document.getElementById('inp-hookfetch').addEventListener('change', save_request_settings);
+    document.getElementById('inp-logging').addEventListener('change', save_request_settings);
+    document.getElementById('inp-catchall').addEventListener('change', save_request_settings);
 
     // Demo content code
     let url = new URLHandler('https://www.youtube.com/watch?v=1yQGkVhO6mQ');
