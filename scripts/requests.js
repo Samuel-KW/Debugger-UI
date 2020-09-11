@@ -59,6 +59,11 @@ class URLHandler {
             logging = document.getElementById('inp-logging'),
             catch_all = document.getElementById('inp-catchall');
 
+        set('filter_regex', filter_re.value);
+        set('catch_regex', catch_re.value);
+        set('hooking_fetch', hook_fetch.checked);
+        set('logging_requests', logging.checked);
+        set('catching_all', catch_all.checked);
     }
 }
 
