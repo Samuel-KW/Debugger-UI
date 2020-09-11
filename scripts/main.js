@@ -186,6 +186,8 @@ function set(key, value) {
     }
 }
 
+
+// TODO Remove updating scripts on save to improve speed
 // Save scripts to storage
 function save_scripts() {
     set('scripts', scripts);
