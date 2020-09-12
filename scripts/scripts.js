@@ -41,7 +41,23 @@ class ScriptViewer {
                 elem = document.createElement('div'),
                 content = document.createElement('span');
 
-            elem.onclick = () => this.select_script(elem);
+            elem.onmousedown = e => {
+
+                // Handle mouse button
+                if (e.button === 1) {
+                    
+                    // Select editor tab
+                    tab.select('Editor');
+
+                    // Select current tab
+                    editor.select(elem.getAttribute('id'));
+
+                    // Prevent default middle click
+                    e.preventDefault();
+                }
+                else if (e.button === 0) this.select_script(elem);
+            };
+
             elem.className = script.active ? 'script running' : 'script';
             elem.setAttribute('id', id);
 
