@@ -1,0 +1,6 @@
+.script.running:before {
+    position: absolute;
+    transform: translateX(-125%);
+    content: '✓';
+    color: rgb(22, 167, 22);
+}
