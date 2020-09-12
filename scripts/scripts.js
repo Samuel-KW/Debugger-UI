@@ -42,7 +42,7 @@ class ScriptViewer {
                 content = document.createElement('span');
 
             elem.onclick = () => this.select_script(elem);
-            elem.className = 'script';
+            elem.className = script.active ? 'script running' : 'script';
             elem.setAttribute('id', id);
 
             content.textContent = script.name;
