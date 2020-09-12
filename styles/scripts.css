@@ -1,6 +1,20 @@
-.script.running:before {
+#script-container .script.running:before {
     position: absolute;
     transform: translateX(-125%);
     content: '✓';
     color: rgb(22, 167, 22);
+}
+
+#script-container .script {
+    font-size: 20px;
+    color: #a3a3a3;
+    cursor: pointer;
+}
+
+#script-container .script:hover {
+    color: #e0e0e0;
+}
+
+#script-container .script.selected {
+    color: #fff;
 }
