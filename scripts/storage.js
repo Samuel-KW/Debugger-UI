@@ -3,6 +3,30 @@ class StorageHandler {
 
     }
 
+    reset () {
+        scripts = {
+            '1598326646634-6wvbxj8v6': {
+                name: 'Hello World Script',
+                desc: 'A "Hello, World!" program generally is a computer program that outputs or displays the message "Hello, World!". Such a program is very simple in most programming languages, and is often used to illustrate the basic syntax of a programming language. It is often the first program written by people learning to code.',
+                author: 'Samuel Walls',
+                updated: 1598326712028,
+                code: '// Hello World!\n\nconsole.log("Hello World!");',
+                active: false
+            }
+        };
+    
+        this.set('active', true);
+        this.set('theme', 'vscode-dark');
+        this.set('scripts', scripts);
+    
+        this.set('filter_regex', '');
+        this.set('catch_regex', '(?!)');
+        this.set('hooking_requests', true);
+        this.set('hooking_fetch', true);
+        this.set('logging_requests', true);
+        this.set('catching_all', false);
+    }
+
     get (key) {
         return new Promise(resolve => {
 
@@ -41,6 +65,10 @@ class StorageHandler {
             if (typeof value == 'object') value = JSON.stringify(value);
             localStorage.setItem(key, value);
         }
+    }
+
+    save_scripts() {
+        set('scripts', scripts);
     }
 }
 
@@ -140,29 +168,4 @@ function load_libs() {
             save_scripts();
         });
     });
-}
-
-// Reset settings
-function reset_settings () {
-    scripts = {
-        '1598326646634-6wvbxj8v6': {
-            name: 'Hello World Script',
-            desc: 'A "Hello, World!" program generally is a computer program that outputs or displays the message "Hello, World!". Such a program is very simple in most programming languages, and is often used to illustrate the basic syntax of a programming language. It is often the first program written by people learning to code.',
-            author: 'Samuel Walls',
-            updated: 1598326712028,
-            code: '// Hello World!\n\nconsole.log("Hello World!");',
-            active: false
-        }
-    };
-
-    set('active', true);
-    set('theme', 'vscode-dark');
-    set('scripts', scripts);
-
-    set('filter_regex', '');
-    set('catch_regex', '(?!)');
-    set('hooking_requests', true);
-    set('hooking_fetch', true);
-    set('logging_requests', true);
-    set('catching_all', false);
 }
