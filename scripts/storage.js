@@ -1,3 +1,6 @@
+const random_nouns = [ 'Machine', 'Programmer', 'Script', 'Code', 'Bug', 'Computer', 'Editor' ];
+const random_adjs = [ 'Angry', 'Happy', 'Buggy', 'Working', 'Annoyed', 'Snappy', 'Cool' ]; 
+
 class StorageHandler {
     constructor () {
 
@@ -70,6 +73,33 @@ class StorageHandler {
     save_scripts() {
         set('scripts', scripts);
     }
+
+    update_script(id, key, value) {
+
+    }
+
+    create_script() {
+        let id = get_uid();
+
+        // Create a new empty script
+        scripts[id] = {
+            name: random_nouns[Math.floor(Math.random() * random_nouns.length)] + ' ' + random_adjs[Math.floor(Math.random() * random_adjs.length)],
+            desc: 'No description here D:',
+            author: 'anonymous',
+            code: '// Write your code here!\n\nconsole.log("Hello World!");',
+            active: false,
+            updated: Date.now()
+        };
+
+        // Update scripts and editor tab
+        viewer.update_scripts(scripts);
+        this.refresh_scripts(scripts);
+
+        // Select the script
+        this.select(id);
+
+        return id;
+    }
 }
 
 // Get saved data
@@ -122,10 +152,6 @@ function save_scripts() {
     // Update scripts and editor tab
     viewer.update_scripts(scripts);
     editor.refresh_scripts(scripts);
-}
-
-function create_script() {
-    
 }
 
 // Load library scripts
