@@ -86,6 +86,12 @@ class StorageHandler {
         scripts[id].name = value;
     }
 
+    update_author(id, value) {
+        scripts[id].author = value;
+    }
+
+    
+
     create_script() {
         let id = get_uid();
 
