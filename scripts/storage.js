@@ -78,6 +78,10 @@ class StorageHandler {
         scripts[id][key] = value;
     }
 
+    update_desc(id, value) {
+        scripts[id].desc = value;
+    }
+
     create_script() {
         let id = get_uid();
 
