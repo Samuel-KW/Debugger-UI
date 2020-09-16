@@ -75,7 +75,7 @@ class StorageHandler {
     }
 
     update_script(id, key, value) {
-
+        scripts[id][key] = value;
     }
 
     create_script() {
