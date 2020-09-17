@@ -80,18 +80,29 @@ class StorageHandler {
 
     update_desc(id, value) {
         scripts[id].desc = value;
+        this.visuals_change();
     }
 
     update_name(id, value) {
         scripts[id].name = value;
+        this.visuals_change();
     }
 
     update_author(id, value) {
         scripts[id].author = value;
+        this.visuals_change();
     }
 
     update_code(id, value) {
         scripts[id].code = value;
+        this.visuals_change();
+    }
+
+    visuals_change() {
+
+        // Update scripts and editor tab
+        viewer.update_scripts(scripts);
+        this.refresh_scripts(scripts);
     }
 
     create_script() {
