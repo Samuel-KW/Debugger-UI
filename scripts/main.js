@@ -114,7 +114,7 @@ function set_theme(theme) {
 
     let elems = [...document.querySelectorAll('link[rel="stylesheet"]')];
 
-    if (elems.filter(e => e.href.includes(href)).length === 0) {
+    if (!elems.find(e => e.href.includes(href))) {
         let style = document.createElement('link');
         style.href = href;
         style.rel = 'stylesheet';
