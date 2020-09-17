@@ -3,7 +3,7 @@ const random_adjs = [ 'Angry', 'Happy', 'Buggy', 'Working', 'Annoyed', 'Snappy',
 
 class StorageHandler {
     constructor () {
-
+        
     }
 
     reset () {
@@ -168,6 +168,8 @@ class StorageHandler {
         });
     }
 }
+
+let storage = new StorageHandler();
 
 // Get saved data
 function get(key) {
