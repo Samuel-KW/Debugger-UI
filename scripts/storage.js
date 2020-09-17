@@ -3,7 +3,7 @@ const random_adjs = [ 'Angry', 'Happy', 'Buggy', 'Working', 'Annoyed', 'Snappy',
 
 class StorageHandler {
     constructor () {
-        
+
     }
 
     reset () {
@@ -102,7 +102,7 @@ class StorageHandler {
 
         // Update scripts and editor tab
         viewer.update_scripts(scripts);
-        this.refresh_scripts(scripts);
+        editor.refresh_scripts(scripts);
     }
 
     create_script() {
@@ -172,46 +172,10 @@ class StorageHandler {
 let storage = new StorageHandler();
 
 // Get saved data
-function get(key) {
-    return new Promise(resolve => {
-
-        // If ran from chrome extension
-        if (chrome && chrome.storage && chrome.storage.local) {
-
-            // Fetch key from local storage
-            chrome.storage.local.get(key, data => {
-                let content = data[key];
-                resolve(content);
-            });
-
-        } else {
-            let resp = localStorage.getItem(key);
-
-            // Attempt to parse value
-            try { resp = JSON.parse(resp); } catch (e) {}
-
-            resolve(resp);
-        }
-    });
-}
+const get = storage.get;
 
 // Set saved data
-function set(key, value) {
-
-    // If ran from chrome extension
-    if (chrome && chrome.storage && chrome.storage.local) {
-        let json = {};
-
-        json[key] = value;
-        chrome.storage.local.set(json);
-
-    } else {
-
-        // Stringify objects
-        if (typeof value == 'object') value = JSON.stringify(value);
-        localStorage.setItem(key, value);
-    }
-}
+const set = storage.set;
 
 // TODO Remove updating scripts on save to improve speed
 // Save scripts to storage
@@ -222,3 +186,64 @@ function save_scripts() {
     viewer.update_scripts(scripts);
     editor.refresh_scripts(scripts);
 }
+
+// Handle page load events
+window.addEventListener('load', function() {
+
+    // Detect and load scripts
+    get('scripts').then(data => {
+
+        scripts = data;
+
+        // Make sure there is always one script
+        if (!data) storage.reset_settings();
+
+        // Update scripts and editor tab
+        storage.visuals_change();
+    });
+
+    // Testing scripts
+    /*set('scripts', scripts = {
+        '1598326646634-6wvbxj8v6': {
+            name: 'Andrew Gump P1',
+            desc: 'Andrew Gump had always loved urban Sidney with its unkempt, ugly umbrellas. It was a place where he felt worried',
+            author: 'Samuel Walls',
+            updated: 1598326712028,
+            code: '// The Gumpster is around, watch out!\n\nconsole.log("Hello you noodler!");',
+            active: false
+        },
+        '1598326646611-2fvbxj8v6': {
+            name: 'Andrew Gump P2',
+            desc: 'He was a tactless, considerate, wine drinker with wide fingernails and brunette ankles. His friends saw him as a jealous, joyous juggler. Once, he had even brought a fair baby back from the brink of death. That\'s the sort of man he was.',
+            author: 'Samuel Walls',
+            updated: 1598326712125,
+            code: '// Don\'t mess with Andrew Gump.\n\nconsole.log("Hello you noodler!");',
+            active: true
+        },
+        '1598326646699-4fvbxjx8v6': {
+            name: 'Andrew Gump P3',
+            desc: 'Andrew walked over to the window and reflected on his sunny surroundings. The sleet rained like drinking lizards.',
+            author: 'Samuel Walls',
+            updated: 1598326712154,
+            code: '// Andrew know everything he needs to know...\n\nconsole.log("Hello you noodler!");',
+            active: true
+        },
+        '1598326646914-1fvbf3fx8v6': {
+            name: 'Andrew Gump P4',
+            desc: 'Then he saw something in the distance, or rather someone. It was the figure of Gregory Clifford. Gregory was an admirable dolphin with sloppy fingernails and beautiful ankles.',
+            author: 'Samuel Walls',
+            updated: 1598326712223,
+            code: '// Gump is always watching...\n\nconsole.log("Hello you noodler!");',
+            active: true
+        },
+        '1598326649182-534g53fx8v6': {
+            name: 'Andrew Gump P5',
+            desc: 'Andrew gulped. He was not prepared for Gregory. As Andrew stepped outside and Gregory came closer, he could see the cute glint in his eye.',
+            author: 'Samuel Walls',
+            updated: 1598326712279,
+            code: '// Mr Gump is ready!\n\nconsole.log("Hello you noodler!");',
+            active: true
+        }
+    });
+    */
+});
