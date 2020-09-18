@@ -82,6 +82,19 @@ class ScriptEditor {
         storage.update_code(this.selected, code);
     }
 
+    new_script() {
+        let id = storage.create_script();
+
+        // Create a new empty script
+        this.update_script(id);
+
+        // Select the script
+        this.select(id);
+
+        return id;
+    }
+
+    // TODO Deprecate function
     update_script(id, settings={}) {
 
         // Handle creating new scripts
@@ -108,29 +121,12 @@ class ScriptEditor {
         save_scripts();
     }
 
-    new_script() {
-        let id = storage.create_script();
+    
 
-        // Create a new empty script
-        this.update_script(id);
-
-        // Select the script
-        this.select(id);
-
-        return id;
-    }
-
+    // TODO Deprecate function
     remove_script(id) {
 
-        // Remove the script from scripts object
-        delete scripts[id];
-
-        // Update scripts and editor tab
-        viewer.update_scripts(scripts);
-        this.refresh_scripts(scripts);
-
-        // Save scripts
-        save_scripts();
+        storage.remove_script(id);
     }
 }
 
