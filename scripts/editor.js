@@ -79,7 +79,7 @@ class ScriptEditor {
 
         let code = editor.cm.getValue();
 
-        this.update_script(this.selected, { code });
+        storage.update_code(this.selected, code);
     }
 
     update_script(id, settings={}) {
@@ -109,14 +109,10 @@ class ScriptEditor {
     }
 
     new_script() {
-        let id = get_uid();
+        let id = storage.create_script();
 
         // Create a new empty script
         this.update_script(id);
-
-        // Update scripts and editor tab
-        viewer.update_scripts(scripts);
-        this.refresh_scripts(scripts);
 
         // Select the script
         this.select(id);
