@@ -177,15 +177,8 @@ const get = storage.get;
 // Set saved data
 const set = storage.set;
 
-// TODO Remove updating scripts on save to improve speed
-// Save scripts to storage
-function save_scripts() {
-    set('scripts', scripts);
-
-    // Update scripts and editor tab
-    viewer.update_scripts(scripts);
-    editor.refresh_scripts(scripts);
-}
+// Save scripts
+const save_scripts = storage.save_scripts;
 
 // Handle page load events
 window.addEventListener('load', function() {
