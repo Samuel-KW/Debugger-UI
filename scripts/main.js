@@ -138,9 +138,11 @@ function accordion(elem, child) {
     child.style.transition = 'max-height 200ms ease-out';
     child.style.maxHeight = '0px';
 
+    // Listen when the element is clicked
     elem.addEventListener('mousedown', function(e) {
         this.classList.toggle('active');
 
+        // Toggle the accordian
         if (child.style.maxHeight != '0px') child.style.maxHeight = '0px';
         else child.style.maxHeight = child.scrollHeight + 'px';
 
