@@ -110,19 +110,24 @@ let tab = new TabHandler();
 
 // Set codemirror theme
 function set_theme(theme) {
-    let href = `codemirror/theme/${theme}.css`;
+    
+    // Get all stylesheets
+    let href = `codemirror/theme/${theme}.css`,
+        elems = [...document.querySelectorAll('link[rel="stylesheet"]')];
 
-    let elems = [...document.querySelectorAll('link[rel="stylesheet"]')];
-
+    // Make sure the theme isn't already loaded
     if (!elems.find(e => e.href.includes(href))) {
+
         let style = document.createElement('link');
         style.href = href;
         style.rel = 'stylesheet';
         style.type = 'text/css';
 
+        // Load the theme
         document.head.appendChild(style);
     }
 
+    // Update the editors
     if (editor) editor.cm.setOption('theme', theme);
     if (viewer) viewer.cm.setOption('theme', theme);
 }
