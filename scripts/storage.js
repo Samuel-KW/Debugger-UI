@@ -128,6 +128,19 @@ class StorageHandler {
         return id;
     }
 
+    remove_script(id) {
+        
+        // Remove the script from scripts object
+        delete scripts[id];
+
+        // Update scripts and editor tab
+        viewer.update_scripts(scripts);
+        this.refresh_scripts(scripts);
+
+        // Save scripts
+        save_scripts();
+    }
+
     load_libs() {
         // Fetch default scripts
         fetch('libraries/files.json').then(e => e.json()).then(json => {
