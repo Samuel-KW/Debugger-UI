@@ -83,42 +83,14 @@ class ScriptEditor {
     }
 
     new_script() {
-        let id = storage.create_script();
 
-        // Create a new empty script
-        this.update_script(id);
+        // Create new script and store the ID
+        let id = storage.create_script();
 
         // Select the script
         this.select(id);
 
         return id;
-    }
-
-    // TODO Deprecate function
-    update_script(id, settings={}) {
-
-        // Handle creating new scripts
-        if (scripts[id] === undefined) {
-            scripts[id] = {
-                name: settings.name ?? 'Unknown Script',
-                desc: settings.desc ?? 'No description here D:',
-                author: settings.author ?? 'anonymous',
-                code: settings.code ?? '// Write your code here!\n\nconsole.log("Hello World!");',
-                active: settings.active ?? false,
-                updated: Date.now()
-            };
-        } else {
-
-            // Replace old values with new ones
-            for (let key in settings)
-                scripts[id][key] = settings[key];
-        }
-
-        // Update scripts and editor tab
-        viewer.update_scripts(scripts);
-        this.refresh_scripts(scripts);
-
-        save_scripts();
     }
 }
 
