@@ -120,14 +120,6 @@ class ScriptEditor {
 
         save_scripts();
     }
-
-    
-
-    // TODO Deprecate function
-    remove_script(id) {
-
-        storage.remove_script(id);
-    }
 }
 
 (function (html) {
@@ -178,7 +170,7 @@ class ScriptEditor {
                 content: 'Yes',
                 click: close => {
 
-                    editor.remove_script(editor.selected);
+                    storage.remove_script(editor.selected);
 
                     close(); 
                 }
