@@ -55,7 +55,7 @@ class ScriptViewer {
                     // Prevent default middle click
                     e.preventDefault();
                 }
-                else if (e.button === 0) this.select_script(elem);
+                else if (e.button === 0) this.select(elem);
             };
 
             elem.className = script.active ? 'script running' : 'script';
@@ -71,11 +71,12 @@ class ScriptViewer {
         let selected = parent.firstChild,
             prev = parent.querySelector(`div[id="${this.selected}"]`);
 
-        if (prev) this.select_script(prev);
-        else if (selected) this.select_script(selected);
+        if (prev) this.select(prev);
+        else if (selected) this.select(selected);
     }
 
-    select_script(selected) {
+    // TODO Standardize select functions
+    select(selected) {
         let parent = document.getElementById('script-container'),
             prev = parent.querySelector(`div[id="${this.selected}"]`),
             id = selected.getAttribute('id'),
