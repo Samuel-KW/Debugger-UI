@@ -110,7 +110,7 @@ class StorageHandler {
 
         // Create a new empty script
         scripts[id] = {
-            name: random_nouns[Math.floor(Math.random() * random_nouns.length)] + ' ' + random_adjs[Math.floor(Math.random() * random_adjs.length)],
+            name: random_adjs[Math.floor(Math.random() * random_adjs.length)] + ' ' + random_nouns[Math.floor(Math.random() * random_nouns.length)],
             desc: 'No description here D:',
             author: 'anonymous',
             code: '// Write your code here!\n\nconsole.log("Hello World!");',
@@ -119,17 +119,18 @@ class StorageHandler {
         };
 
         // Update scripts and editor tab
+        editor.refresh_scripts(scripts);
         viewer.update_scripts(scripts);
-        this.refresh_scripts(scripts);
 
         // Select the script
-        this.select(id);
+        editor.select(id);
+        viewer.select(document.getElementById(id));
 
         return id;
     }
 
     remove_script(id) {
-        
+
         // Remove the script from scripts object
         delete scripts[id];
 
