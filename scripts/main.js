@@ -42,6 +42,7 @@ class Tab {
         return this;
     }
 
+    // Show container
     show() {
         this.container.classList.remove('hidden');
         this.title.classList.add('selected');
