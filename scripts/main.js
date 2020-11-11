@@ -34,6 +34,7 @@ class Tab {
         window.addEventListener('resize', () => { this.title.classList.contains('hidden') || this.refresh(); });
     }
 
+    // Hide container
     hide() {
         this.container.classList.add('hidden');
         this.title.classList.remove('selected');
